@@ -1,0 +1,23 @@
+<% @page_title = "会員名簿" %>
+<h1><%= @page_title %></h1>
+
+<% if @members.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>アカウント名</th>
+        <th>氏名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @members.each do |member| %>
+        <tr>
+          <td><%= link_to member.name, member %></td>
+          <td><%= member.fullname %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>会員情報がありません。</p>
+<% end %>

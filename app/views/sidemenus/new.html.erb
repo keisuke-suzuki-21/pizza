@@ -1,0 +1,30 @@
+<% @page_title = "サイドメニューの新規作成" %>
+
+<h1><%= @page_title %></h1>
+
+<%= form_for @sidemenu do |form| %>
+<table class="attr">
+  <tr>
+    <th><%= form.label :name, "サイドメニュー名" %></th>
+    <td><%= form.text_field :name %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :price, "値段" %></th>
+    <td><%= form.text_field :price %></td>
+  </tr>
+  <tr>
+    <th><% options = ["Sサイズ", 0], ["Mサイズ", 1], ["Lサイズ", 2]%><%= form.label :size, "サイズ" %></th>
+    <td><%= form.select :size, options %></td>
+  </tr>
+  <tr>
+    <th>おすすめ</th>
+    <td>
+      <%= form.check_box :recommend %>
+      <%= form.label :recommend, "おすすめ" %>
+    </td>
+  </tr>
+</table>
+<div><%= form.submit %></div>
+<% end %>
+
+<div class="toolbar"><%= link_to "サイドメニュー一覧に戻る", sidemenus_path %></div>

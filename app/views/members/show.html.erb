@@ -1,0 +1,36 @@
+<% @page_title = "会員の詳細" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "削除", @member, method: :delete, data: {confirm: "本当に削除しますか？"} %></div>
+
+<table class="attr">
+  <tr>
+    <th>アカウント名</th>
+    <td><%= @member.name %></td>
+  </tr>
+  <tr>
+    <th>氏名</th>
+    <td><%= @member.fullname %></td>
+  </tr>
+  <tr>
+    <th>パスワード</th>
+    <td><%= @member.password %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @member.adress %></td>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @member.email %></td>
+  </tr>
+  <tr>
+    <th>電話番号</th>
+    <td><%= @member.phone %></td>
+  </tr>
+  <tr>
+    <th>ポイント</th>
+    <td><%= @member.point %></td>
+  </tr>
+</table>

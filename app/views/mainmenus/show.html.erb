@@ -1,0 +1,32 @@
+<% @page_title = "メインメニュー詳細" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "削除", @mainmenu, method: :delete, data: {confirm: "本当に削除しますか？"} %></div>
+
+<table class="attr">
+  <tr>
+    <th>メインメニュー名</th>
+    <td><%= @mainmenu.name %></td>
+  </tr>
+  <tr>
+    <th>値段</th>
+    <td><%= @mainmenu.price %></td>
+  </tr>
+  <tr>
+    <th>サイズ</th>
+    <td><%= @mainmenu.size %></td>
+  </tr>
+  <%= form_for @mainmenu, method: :patch do |form| %>
+    <tr>
+      <th>おすすめ</th>
+      <td>
+        <%= form.check_box :recommend %>
+        <%= form.label :recommend, "おすすめ" %>
+      </td>
+    </tr>
+  <div><%= form.submit %></div>
+  <% end %>
+</table>
+
+<div class="toolbar"><%= link_to "メインメニュー一覧に戻る", mainmenus_path %></div>

@@ -1,0 +1,2 @@
+class Mainmenu < ApplicationRecord
+end

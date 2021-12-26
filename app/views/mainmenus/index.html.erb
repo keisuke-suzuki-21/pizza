@@ -1,0 +1,23 @@
+<% @page_title = "メインメニュー一覧" %>
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "追加", new_mainmenu_path %></div>
+
+<% if @mainmenus.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>メインメニュー名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @mainmenus.each do |mainmenu| %>
+        <tr>
+          <td><%= link_to mainmenu.name, mainmenu %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>メインメニュー情報がありません。</p>
+<% end %>

@@ -1,0 +1,32 @@
+<% @page_title = "サイドメニュー詳細" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "削除", @sidemenu, method: :delete, data: {confirm: "本当に削除しますか？"} %></div>
+
+<table class="attr">
+  <tr>
+    <th>サイドメニュー名</th>
+    <td><%= @sidemenu.name %></td>
+  </tr>
+  <tr>
+    <th>値段</th>
+    <td><%= @sidemenu.price %></td>
+  </tr>
+  <tr>
+    <th>サイズ</th>
+    <td><%= @sidemenu.size %></td>
+  </tr>
+  <%= form_for @sidemenu, method: :patch do |form| %>
+    <tr>
+      <th>おすすめ</th>
+      <td>
+        <%= form.check_box :recommend %>
+        <%= form.label :recommend, "おすすめ" %>
+      </td>
+    </tr>
+  <div><%= form.submit %></div>
+  <% end %>
+</table>
+
+<div class="toolbar"><%= link_to "サイドメニュー一覧に戻る", sidemenus_path %></div>
