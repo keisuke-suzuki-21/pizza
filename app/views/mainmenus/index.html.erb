@@ -1,8 +1,6 @@
 <% @page_title = "メインメニュー一覧" %>
 <h1><%= @page_title %></h1>
 
-<div class="toolbar"><%= link_to "追加", new_mainmenu_path %></div>
-
 <% if @mainmenus.present? %>
   <table class="list">
     <thead>
@@ -20,4 +18,34 @@
   </table>
 <% else %>
   <p>メインメニュー情報がありません。</p>
+<% end %>
+
+
+<% @page_title = "メインメニューの新規作成" %>
+
+<h1><%= @page_title %></h1>
+
+<%= form_for @mainmenu do |form| %>
+<table class="attr">
+  <tr>
+    <th><%= form.label :name, "メインメニュー名" %></th>
+    <td><%= form.text_field :name %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :price, "値段" %></th>
+    <td><%= form.text_field :price %></td>
+  </tr>
+  <tr>
+    <th><% options = ["Sサイズ", 0], ["Mサイズ", 1], ["Lサイズ", 2]%><%= form.label :size, "サイズ" %></th>
+    <td><%= form.select :size, options %></td>
+  </tr>
+  <tr>
+    <th>おすすめ</th>
+    <td>
+      <%= form.check_box :recommend %>
+      <%= form.label :recommend, "おすすめ" %>
+    </td>
+  </tr>
+</table>
+<div><%= form.submit %></div>
 <% end %>

@@ -1,6 +1,7 @@
 class SidemenusController < ApplicationController
   def index
     @sidemenus = Sidemenu.all
+    @sidemenu = Sidemenu.new
   end
 
   def show
@@ -8,11 +9,11 @@ class SidemenusController < ApplicationController
   end
 
   def new
-    @sidemenu = Sidemenu.new
+    # @sidemenu = Sidemenu.new
   end
 
   def edit
-    @sidemenu = Sidemenu.find(params[:id])
+    # @sidemenu = Sidemenu.find(params[:id])
   end
 
   def create

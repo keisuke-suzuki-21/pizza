@@ -1,6 +1,7 @@
 class MainmenusController < ApplicationController
   def index
     @mainmenus = Mainmenu.all
+    @mainmenu = Mainmenu.new
   end
 
   def show
@@ -8,17 +9,17 @@ class MainmenusController < ApplicationController
   end
 
   def new
-    @mainmenu = Mainmenu.new
+    # @mainmenu = Mainmenu.new
   end
 
   def edit
-    @mainmenu = Mainmenu.find(params[:id])
+    # @mainmenu = Mainmenu.find(params[:id])
   end
 
   def create
     @mainmenu = Mainmenu.new(params[:mainmenu])
     if @mainmenu.save
-      redirect_to :mainmenus, notice: "サイドメニューを追加しました。"
+      redirect_to :mainmenus, notice: "メインメニューを追加しました。"
     else
       render "new"
     end
@@ -29,7 +30,7 @@ class MainmenusController < ApplicationController
       @mainmenu = Mainmenu.find(params[:id])
       @mainmenu.assign_attributes(params[:mainmenu])
       if @mainmenu.save
-        redirect_to :mainmenus, notice: "サイドメニュー情報を更新しました。"
+        redirect_to :mainmenus, notice: "メインメニュー情報を更新しました。"
       else
         render "edit"
       end
@@ -39,6 +40,6 @@ class MainmenusController < ApplicationController
   def destroy
     @mainmenu = Mainmenu.find(params[:id])
     @mainmenu.destroy
-    redirect_to :mainmenus, notice: "サイドメニューを削除しました。"
+    redirect_to :mainmenus, notice: "メインメニューを削除しました。"
   end
 end

@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :members
   resources :sidemenus
   resources :mainmenus
+  resources :toppings
 end
