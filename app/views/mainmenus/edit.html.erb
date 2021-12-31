@@ -12,12 +12,12 @@
     <th>サイズ</th>
     <td><%= @mainmenu.size %></td>
   </tr>
+  <% Topping.all.each do |topping| %>
   <tr>
-    <% @mainmenu.toppings.each do |topping| %>
-    <th>トッピング</th>
-    <td><%= form.check_box  %></td>
-    <% end %>
+    <th><%= form.label :name %></th>
+    <td><%= form.check_box :topping_ids, { multiple: true }, topping.id, "" %><%= topping.name %>&emsp;</td>
   </tr>
+  <% end %>
 </table>
 <div><%= form.submit "更新" %></div>
 <% end %>
