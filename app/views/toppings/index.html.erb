@@ -1,3 +1,19 @@
+<% if @mainmenu %>
+
+<% @toppings.each do |topping| %>
+  <%= form_for topping do |form| %>
+  <table class="attr">
+    <tr>
+      <th><%= form.label :name, topping.name %></th>
+      <td><%= form.check_box :name %></td>
+    </tr>
+  </table>
+  <%= form.submit "トッピング追加" %>
+  <% end %>
+<% end %>
+
+<% else %>
+
 <% @page_title = "トッピング一覧" %>
 <h1><%= @page_title %></h1>
 
@@ -41,4 +57,6 @@
   </tr>
 </table>
 <div><%= form.submit %></div>
+<% end %>
+
 <% end %>

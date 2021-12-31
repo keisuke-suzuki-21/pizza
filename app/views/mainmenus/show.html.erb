@@ -3,6 +3,7 @@
 <h1><%= @page_title %></h1>
 
 <div class="toolbar"><%= link_to "削除", @mainmenu, method: :delete, data: {confirm: "本当に削除しますか？"} %></div>
+<div class="toolbar"><%= link_to "トッピングの追加", edit_mainmenu_path(@mainmenu) %></div>
 
 <table class="attr">
   <tr>
@@ -17,16 +18,22 @@
     <th>サイズ</th>
     <td><%= @mainmenu.size %></td>
   </tr>
-  <%= form_for @mainmenu, method: :patch do |form| %>
-    <tr>
-      <th>おすすめ</th>
-      <td>
-        <%= form.check_box :recommend %>
-        <%= form.label :recommend, "おすすめ" %>
-      </td>
-    </tr>
-  <div><%= form.submit %></div>
-  <% end %>
+  <tr>
+    <th>トッピング</th>
+    <% @mainmenu.toppings.each do |topping| %>
+    <td><%= topping.name %></td>
+    <% end %>
+  </tr>
+  <%= form_for @mainmenu do |form| %>
+  <tr>
+    <th>おすすめ</th>
+    <td>
+      <%= form.check_box :recommend %>
+      <%= form.label :recommend, "おすすめ" %>
+    </td>
+  </tr>
 </table>
+<div><%= form.submit "オススメ登録" %></div>
+<% end %>
 
-<div class="toolbar"><%= link_to "メインメニュー一覧に戻る", mainmenus_path %></div>
+<div class="toolbar"><%= link_to "<<メインメニュー一覧に戻る", mainmenus_path %></div>

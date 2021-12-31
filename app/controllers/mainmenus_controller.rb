@@ -13,7 +13,7 @@ class MainmenusController < ApplicationController
   end
 
   def edit
-    # @mainmenu = Mainmenu.find(params[:id])
+    @mainmenu = Mainmenu.find(params[:id])
   end
 
   def create
@@ -26,14 +26,12 @@ class MainmenusController < ApplicationController
   end
 
   def update
-    def update
-      @mainmenu = Mainmenu.find(params[:id])
-      @mainmenu.assign_attributes(params[:mainmenu])
-      if @mainmenu.save
-        redirect_to :mainmenus, notice: "メインメニュー情報を更新しました。"
-      else
-        render "edit"
-      end
+    @mainmenu = Mainmenu.find(params[:id])
+    @mainmenu.assign_attributes(params[:mainmenu])
+    if @mainmenu.save
+      redirect_to :mainmenus, notice: "メインメニュー情報を更新しました。"
+    else
+      render "edit"
     end
   end
 

@@ -1,0 +1,23 @@
+<%= form_for @mainmenu do |form| %>
+<table class="attr">
+  <tr>
+    <th>メインメニュー名</th>
+    <td><%= @mainmenu.name %></td>
+  </tr>
+  <tr>
+    <th>値段</th>
+    <td><%= @mainmenu.price %></td>
+  </tr>
+  <tr>
+    <th>サイズ</th>
+    <td><%= @mainmenu.size %></td>
+  </tr>
+  <tr>
+    <% @mainmenu.toppings.each do |topping| %>
+    <th>トッピング</th>
+    <td><%= form.check_box  %></td>
+    <% end %>
+  </tr>
+</table>
+<div><%= form.submit "更新" %></div>
+<% end %>

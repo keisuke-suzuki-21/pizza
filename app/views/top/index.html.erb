@@ -1,1 +1,37 @@
 <h2>Pizza</h2>
+
+<% if current_member %>
+<h4>ログイン状態</h4>
+<% end %>
+
+<% if @mainmenus.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>超オススメ！メインメニュー名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @mainmenus.each do |mainmenu| %>
+        <tr>
+          <td><%= link_to mainmenu.name, mainmenu %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>メインメニュー情報がありません。</p>
+<% end %>
+
+<ul>
+	<li><%= link_to "商品一覧", mainmenus_path %></li>
+	<li><%= link_to "カート", "#" %></li>
+  <% unless current_member %>
+	<li><%= link_to "ログイン", edit_session_path %></li>
+  <% end %>
+  <% if current_member %>
+  <% member = current_member %>
+	<li><%= link_to "マイアカウントページ", edit_member_path(member) %></li>
+  <% end %>
+	<li><%= link_to "新規会員登録", "#" %></li>
+</ul>
