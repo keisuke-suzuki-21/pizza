@@ -9,7 +9,6 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :session
 
       t.references :member, null: false
-      t.references :sidemenu
     end
   end
 end

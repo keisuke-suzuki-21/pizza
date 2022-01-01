@@ -13,10 +13,17 @@
     <td><%= @mainmenu.size %></td>
   </tr>
   <% Topping.all.each do |topping| %>
+  <% if topping.stock > 0 %>
   <tr>
     <th><%= form.label :name %></th>
     <td><%= form.check_box :topping_ids, { multiple: true }, topping.id, "" %><%= topping.name %>&emsp;</td>
   </tr>
+  <% else %>
+  <tr>
+    <th><%= form.label :name %></th>
+    <td><%= form.check_box :topping_ids, disabled: true %><%= topping.name %>&emsp;</td>
+  </tr>
+  <% end %>
   <% end %>
 </table>
 <div><%= form.submit "更新" %></div>
