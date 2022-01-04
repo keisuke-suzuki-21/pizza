@@ -8,10 +8,14 @@ Rails.application.routes.draw do
   resources :mainmenus do
     resources :toppings, only: [:index]
   end
-  
+
   resources :sidemenus
   resources :toppings
   resources :recipes
   resources :orders
   resource :session, only: [:edit, :create, :destroy]
+
+  namespace :admin do
+    root "top#index"
+  end 
 end
