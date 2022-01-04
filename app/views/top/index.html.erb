@@ -25,13 +25,13 @@
 
 <ul>
 	<li><%= link_to "商品一覧", mainmenus_path %></li>
-	<li><%= link_to "カート", "#" %></li>
+	<li><%= link_to "カート", orders_path %></li>
   <% unless current_member %>
-	<li><%= link_to "ログイン", edit_session_path %></li>
+	 <li><%= link_to "ログイン", edit_session_path %></li>
   <% end %>
   <% if current_member %>
-  <% member = current_member %>
-	<li><%= link_to "マイアカウントページ", edit_member_path(member) %></li>
+    <% member = current_member %>
+	   <li><%= link_to "マイアカウントページ", edit_member_path(member) %></li>
   <% end %>
 	<li><%= link_to "新規会員登録", "#" %></li>
 </ul>

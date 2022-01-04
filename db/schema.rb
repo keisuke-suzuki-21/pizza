@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_12_30_012822) do
 
   create_table "orders", force: :cascade do |t|
     t.string "address", null: false
-    t.string "time", null: false
+    t.date "time", null: false
     t.integer "price", null: false
     t.string "case", null: false
     t.boolean "cart", null: false
