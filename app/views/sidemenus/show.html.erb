@@ -17,16 +17,6 @@
     <th>サイズ</th>
     <td><%= @sidemenu.size %></td>
   </tr>
-  <%= form_for @sidemenu, method: :patch do |form| %>
-    <tr>
-      <th>おすすめ</th>
-      <td>
-        <%= form.check_box :recommend %>
-        <%= form.label :recommend, "おすすめ" %>
-      </td>
-    </tr>
-  <div><%= form.submit %></div>
-  <% end %>
 </table>
 
 <div class="toolbar"><%= link_to "サイドメニュー一覧に戻る", sidemenus_path %></div>

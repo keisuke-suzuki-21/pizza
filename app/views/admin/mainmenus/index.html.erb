@@ -1,8 +1,31 @@
+<% @page_title = "メインメニュー一覧" %>
+<h1><%= @page_title %></h1>
+
+<% if @mainmenus.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>メインメニュー名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @mainmenus.each do |mainmenu| %>
+        <tr>
+          <td><%= link_to mainmenu.name, [:admin, mainmenu] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>メインメニュー情報がありません。</p>
+<% end %>
+
+
 <% @page_title = "メインメニューの新規作成" %>
 
 <h1><%= @page_title %></h1>
 
-<%= form_for @mainmenu do |form| %>
+<%= form_for [:admin, @mainmenu] do |form| %>
 <table class="attr">
   <tr>
     <th><%= form.label :name, "メインメニュー名" %></th>
@@ -24,7 +47,7 @@
     </td>
   </tr>
 </table>
-<div><%= form.submit %></div>
+<div><%= form.submit "メインメニュー新規登録"%></div>
 <% end %>
 
-<div class="toolbar"><%= link_to "メインメニュー一覧に戻る", mainmenus_path %></div>
+<div class="toolbar"><%= link_to "<<管理者topへ", :admin_administrators %></div>

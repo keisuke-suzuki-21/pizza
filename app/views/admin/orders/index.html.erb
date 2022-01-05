@@ -1,0 +1,23 @@
+<% @page_title = "カート内情報" %>
+<h1><%= @page_title %></h1>
+
+<% if @order.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>メインメニュー</th>
+        <th>サイドメニュー</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= "メインメニュー" %></td>
+        <td><%= @order.sidemenus.pluck(:name) %></td>
+      </tr>
+    </tbody>
+  </table>
+<% else %>
+  <p>カート内情報がありません。</p>
+<% end %>
+
+<div><%= link_to "注文ボタン", edit_order_path(@order) %></div>

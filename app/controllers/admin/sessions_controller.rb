@@ -11,7 +11,7 @@ class Admin::SessionsController < Admin::Base
     else
       flash.alert = "名前とパスワードが一致しません"
     end
-    redirect_to admin_root_path
+    redirect_to admin_administrators_path
   end
 
   def destroy

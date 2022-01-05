@@ -1,0 +1,22 @@
+<% @page_title = "トッピング詳細" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "削除", [:admin, @topping], method: :delete, data: {confirm: "本当に削除しますか？"} %></div>
+
+<table class="attr">
+  <tr>
+    <th>トッピング名</th>
+    <td><%= @topping.name %></td>
+  </tr>
+  <tr>
+    <th>値段</th>
+    <td><%= @topping.price %></td>
+  </tr>
+  <tr>
+    <th>ストック</th>
+    <td><%= @topping.stock %></td>
+  </tr>
+</table>
+
+<div class="toolbar"><%= link_to "<<トッピング一覧に戻る", admin_toppings_path %></div>

@@ -11,7 +11,6 @@ Rails.application.routes.draw do
 
   resources :sidemenus
   resources :toppings
-  resources :recipes
   resources :orders
   resource :session, only: [:edit, :create, :destroy]
 
@@ -19,5 +18,10 @@ Rails.application.routes.draw do
     root "top#index"
     resources :sessions
     resources :administrators
+    resources :members
+    resources :mainmenus
+    resources :sidemenus
+    resources :toppings
+    resources :orders
   end
 end
