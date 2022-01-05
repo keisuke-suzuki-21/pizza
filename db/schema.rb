@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_04_224359) do
+ActiveRecord::Schema.define(version: 2022_01_05_072238) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "password_digest", null: false
@@ -52,7 +52,20 @@ ActiveRecord::Schema.define(version: 2022_01_04_224359) do
     t.index ["member_id"], name: "index_orders_on_member_id"
   end
 
+  create_table "product_toppings", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "topping_id", null: false
+    t.index ["product_id"], name: "index_product_toppings_on_product_id"
+    t.index ["topping_id"], name: "index_product_toppings_on_topping_id"
+  end
+
   create_table "products", force: :cascade do |t|
+    t.integer "mainmenu_id", null: false
+    t.integer "order_id", null: false
+    t.integer "price", null: false
+    t.integer "number", null: false
+    t.index ["mainmenu_id"], name: "index_products_on_mainmenu_id"
+    t.index ["order_id"], name: "index_products_on_order_id"
   end
 
   create_table "recipes", force: :cascade do |t|
