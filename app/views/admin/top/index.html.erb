@@ -1,0 +1,21 @@
+<h2>Pizza(管理者ログイン)</h2>
+
+<% if current_administrator %>
+<p>ログイン済み</p>
+<% end %>
+
+<h2>ログイン</h2>
+<% if flash.alert %><p class = "alert"><%= flash.alert %></p><% end %>
+<%= form_tag admin_sessions_path, id: "login_form" do %>
+  <div>
+    <label>管理者名：</label>
+    <input type="text" name = "name">
+  </div>
+  <div>
+    <label>パスワード：</label>
+    <input type="password" name = "password">
+  </div>
+  <div>
+    <input type="submit" value="ログイン">
+  </div>
+<% end %>

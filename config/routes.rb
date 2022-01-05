@@ -17,5 +17,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "top#index"
-  end 
+    resources :sessions
+    resources :administrators
+  end
 end
