@@ -42,11 +42,11 @@ ActiveRecord::Schema.define(version: 2022_01_05_072238) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string "address", null: false
-    t.date "time", null: false
-    t.integer "price", null: false
-    t.string "case", null: false
-    t.boolean "cart", null: false
+    t.string "address"
+    t.date "time"
+    t.integer "price"
+    t.boolean "case", default: false, null: false
+    t.boolean "cart", default: false, null: false
     t.string "session"
     t.integer "member_id", null: false
     t.index ["member_id"], name: "index_orders_on_member_id"
@@ -60,12 +60,9 @@ ActiveRecord::Schema.define(version: 2022_01_05_072238) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer "mainmenu_id", null: false
-    t.integer "order_id", null: false
-    t.integer "price", null: false
-    t.integer "number", null: false
+    t.integer "mainmenu_id"
+    t.integer "price"
     t.index ["mainmenu_id"], name: "index_products_on_mainmenu_id"
-    t.index ["order_id"], name: "index_products_on_order_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -83,8 +80,6 @@ ActiveRecord::Schema.define(version: 2022_01_05_072238) do
     t.string "name", null: false
     t.integer "stock", null: false
     t.integer "price", null: false
-    t.integer "mainmenu_id"
-    t.index ["mainmenu_id"], name: "index_toppings_on_mainmenu_id"
   end
 
 end

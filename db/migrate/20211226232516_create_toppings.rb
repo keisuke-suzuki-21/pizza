@@ -5,7 +5,7 @@ class CreateToppings < ActiveRecord::Migration[5.2]
       t.integer :stock, null: false
       t.integer :price, null: false
 
-      t.references :mainmenu
+      # t.references :mainmenu
     end
   end
 end

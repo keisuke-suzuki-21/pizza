@@ -1,15 +1,25 @@
 class OrdersController < ApplicationController
 
   def index
+    #ログイン済みの人のカート
     if current_member
-      @orders = Order.where(member_id: current_member.id)
-      @order = @orders.where(cart: 0)
+      #ログイン済みでかつ既にカートを保持している時
+      if Order.where(member_id: current_member.id).where(cart: 0).present?
+        @order = Order.where(member_id: current_member.id).where(cart: 0)
+      #ログインはしているが初めてのカートへの追加の時
+      else
+        @order = Order.new
+        @order.member_id = current_member.id
+        @order.save
+      end
+    #未ログインの人のカート
     else
       @order = Order.new
     end
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   def new
@@ -18,12 +28,6 @@ class OrdersController < ApplicationController
   def edit
     @member = current_member
     @order = Order.new
-    # if current_member
-    #   @member = current_member
-    #   @order = Order.new
-    # else
-    #   @order = Order.new
-    # end
   end
 
   def create

@@ -1,7 +1,7 @@
 <% @page_title = "カート内情報" %>
 <h1><%= @page_title %></h1>
 
-<% if @order.products.present? %>
+<% if @order.present? %>
   <% @order.products.each do |product| %>
     <h5><%= product.mainmenu.name %></h5>
   <% end %>
@@ -9,5 +9,4 @@
  <p>カートに情報がありません。</p>
 <% end %>
 
-
-<div><%= link_to "注文ボタン", edit_order_path(@order) %></div>
+<div><%= link_to "<<商品一覧へ", mainmenus_path %></div>

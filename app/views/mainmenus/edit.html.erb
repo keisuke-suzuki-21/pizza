@@ -1,17 +1,5 @@
-<%= form_for @mainmenu do |form| %>
+<%= form_for @product do |form| %>
 <table class="attr">
-  <tr>
-    <th>メインメニュー名</th>
-    <td><%= @mainmenu.name %></td>
-  </tr>
-  <tr>
-    <th>値段</th>
-    <td><%= @mainmenu.price %></td>
-  </tr>
-  <tr>
-    <th>サイズ</th>
-    <td><%= @mainmenu.size %></td>
-  </tr>
   <% Topping.all.each do |topping| %>
   <% if topping.stock > 0 %>
   <tr>

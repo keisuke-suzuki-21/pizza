@@ -1,0 +1,14 @@
+<% @page_title = "トッピング追加画面" %>
+<h1><%= @page_title %></h1>
+
+<%= form_for @product do |form| %>
+  <% Topping.all.each do |topping| %>
+  <table class="attr">
+    <tr>
+      <th><%= form.label :name "topping.name"%></th>
+      <td><%= form.cheak_box :topping_ids, { multiple: true }, topping.id, "" %><%= topping.name %>&emsp;</td>
+    </tr>
+  </table>
+  <% end %>
+  <div><%= form.submit %></div>
+<% end %>
