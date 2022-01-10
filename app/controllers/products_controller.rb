@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   def show
-    @mainmenu = Mainmenu.find(params[:mainmenu_id])
+    # @mainmenu = Mainmenu.find(params[:mainmenu_id])
     # @product = Product.find_by(mainmenu_id: @mainmenu.id, id: params[:id])
     @product = Product.find(params[:id])
   end
@@ -21,7 +21,17 @@ class ProductsController < ApplicationController
 
   #トッピングありの追加
   def edit
-    @mainmenu = Mainmenu.find(params[:mainmenu_id])
-    @product = Product.find_by(mainmenu_id: @mainmenu.id, id: params[:id])
+    # @mainmenu = Mainmenu.find(params[:mainmenu_id])
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    @product.assign_attributes(params[:product])
+    if @product.save
+      redirect_to @product
+    else
+      render "edit"
+    end
   end
 end

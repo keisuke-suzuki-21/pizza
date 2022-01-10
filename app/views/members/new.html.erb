@@ -1,11 +1,3 @@
-<% @page_title = "マイページ" %>
-
-<h1><%= @page_title %></h1>
-
-<div class="toolbar"><%= link_to "削除", @member, method: :delete, data: {confirm: "本当に削除しますか？"} %></div>
-<div class="toolbar"><%= link_to "ログアウト", :session, method: :delete, data: {confirm: "ログアウトしますか？"} %></div>
-<div class="toolbar"><%= link_to "利用履歴", "#" %></div>
-
 <%= form_for @member do |form| %>
 <table class="attr">
   <tr>
@@ -34,10 +26,10 @@
   </tr>
   <tr>
     <th><%= form.label :point, "ポイント" %></th>
-    <td><%= @member.point %></td>
+    <td><%= 0 %></td>
   </tr>
 </table>
-<div><%= form.submit "更新" %></div>
+  <div><%= form.submit "新規会員登録" %></div>
 <% end %>
 
 <div class="toolbar"><%= link_to "<<Top", :root %></div>

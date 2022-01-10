@@ -24,7 +24,8 @@
 <% end %>
 
 <ul>
-	<li><%= link_to "商品一覧", mainmenus_path %></li>
+	<li><%= link_to "メインメニュー一覧", mainmenus_path %></li>
+  <li><%= link_to "サイドメニュー一覧", sidemenus_path %></li>
 	<li><%= link_to "カート", orders_path %></li>
   <% unless current_member %>
 	 <li><%= link_to "ログイン", edit_session_path %></li>
@@ -33,5 +34,5 @@
     <% member = current_member %>
 	   <li><%= link_to "マイアカウントページ", edit_member_path(member) %></li>
   <% end %>
-	<li><%= link_to "新規会員登録", "#" %></li>
+	<li><%= link_to "新規会員登録", new_member_path %></li>
 </ul>

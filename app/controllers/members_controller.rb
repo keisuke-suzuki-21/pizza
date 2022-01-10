@@ -8,6 +8,7 @@ class MembersController < ApplicationController
   end
 
   def new
+    @member = Member.new
   end
 
   def edit
@@ -15,6 +16,13 @@ class MembersController < ApplicationController
   end
 
   def create
+    @member = Member.new(params[:member])
+    if @member.save
+      cookies.signed[:member_id] = { value: @member.id, expires: 5.minutes.from_now }
+      redirect_to :root
+    else
+      render "new"
+    end
   end
 
   def update

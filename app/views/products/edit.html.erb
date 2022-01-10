@@ -5,10 +5,22 @@
   <% Topping.all.each do |topping| %>
   <table class="attr">
     <tr>
-      <th><%= form.label :name "topping.name"%></th>
-      <td><%= form.cheak_box :topping_ids, { multiple: true }, topping.id, "" %><%= topping.name %>&emsp;</td>
+      <th><%= form.label :toppings, topping.name %></th>
+      <td><%= form.check_box :toppings %></td>
     </tr>
   </table>
   <% end %>
-  <div><%= form.submit %></div>
+  <div><%= form.submit "トッピング追加" %></div>
+<% end %>
+
+<%= form_for @product do |form| %>
+
+    <% Topping.all.each do |topping| %>
+      <%= form.label :topping_ids, value: topping.id, class: 'checkbox' do %>
+        <%= form.check_box :topping_ids, { multiple: true }, topping.id, nil %>
+        <%= topping.name %>
+      <% end %>
+    <% end %>
+
+  <%= form.submit '登録', class: 'btn btn-primary' %>
 <% end %>

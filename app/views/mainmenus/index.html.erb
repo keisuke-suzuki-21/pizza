@@ -10,9 +10,17 @@
     </thead>
     <tbody>
       <% @mainmenus.each do |mainmenu| %>
-      <% product = mainmenu.products %>
         <tr>
-          <td><%= link_to mainmenu.name, mainmenu_product_path(mainmenu, product) %></td>
+          <% if Product.find_by(id: mainmenu.id).present? %>
+          <% @product = Product.find(mainmenu.id) %>
+          <% else %>
+          <% @product = Product.new %>
+          <% @product.mainmenu = mainmenu %>
+          <% @product.price = mainmenu.price %>
+          <% @product.id = mainmenu.id %>
+          <% @product.save %>
+          <% end %>
+          <td><%= link_to mainmenu.name, product_path(@product) %></td>
         </tr>
       <% end %>
     </tbody>

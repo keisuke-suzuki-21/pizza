@@ -2,20 +2,20 @@
 
 <h1><%= @page_title %></h1>
 
-<div class="toolbar"><%= link_to "トッピングの追加", edit_mainmenu_product_path(@mainmenu, @product) %></div>
+<div class="toolbar"><%= link_to "トッピングの追加", edit_product_path(@product) %></div>
 
 <table class="attr">
   <tr>
     <th>メインメニュー名</th>
-    <td><%= @mainmenu.name %></td>
+    <td><%= @product.mainmenu.name %></td>
   </tr>
   <tr>
     <th>値段</th>
-    <td><%= @mainmenu.price %></td>
+    <td><%= @product.price %></td>
   </tr>
   <tr>
     <th>サイズ</th>
-    <td><%= @mainmenu.size %></td>
+    <td><%= @product.mainmenu.size %></td>
   </tr>
   <% if @product.toppings.present? %>
   <tr>

@@ -1,19 +1,6 @@
 class MainmenusController < ApplicationController
   def index
     @mainmenus = Mainmenu.all
-    @mainmenus.each do |mainmenu|
-      @product = Product.create(price: mainmenu.price)
-      @product.mainmenu = mainmenu
-      @product.save
-      @products = @product
-    end
-    # if Product.find_by(id: 1).present?
-    #   # @product = Product.find_by(mainmenu_id: @mainmenu.id, id: params[:id])
-    # else
-    #   @product = Product.new
-    #   @product.id = 1
-    #   @product.save
-    # end
   end
 
   def show
@@ -22,8 +9,6 @@ class MainmenusController < ApplicationController
 
   def edit
     @mainmenu = Mainmenu.find(params[:id])
-    if Product.where(mainmenu_id: @mainmenu.id)
-    end
   end
 
   def update
