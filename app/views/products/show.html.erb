@@ -27,5 +27,27 @@
   <% end %>
 </table>
 
-<div><%= link_to "カートへ追加", "#" %></div>
-<div><%= link_to "<<Topへ", mainmenus_path %></div>
+<% "ログインしているかつ既にカート(cart:0)を保持している人" %>
+<% if current_member && Order.find_by(member_id: current_member.id, cart: false).present? %>
+  <% @order = Order.find_by(member_id: current_member.id, cart: false) %>
+  <%# <% @order.products << @product %> %>
+  <%# <% Product.find(id: @product.id).delete %> %>
+<% "ログインしているけどカートを保持していない人" %>
+<% else %>
+  <% @order = Order.new %>
+  <%# <% @order.products << @product %> %>
+  <%# <% Product.find(id: @product.id).delete %> %>
+  <% @order.member = current_member %>
+  <% @order.id = current_member.id %>
+  <% @order.save! %>
+<% end %>
+
+
+<%# <%= link_to "カートへ追加", new_order_path %> %>
+
+<%= link_to "カートへ追加", edit_order_product_path(@order, @product) %>
+
+<%# <%= link_to "カートへ追加", order_path(@order) %> %>
+<%# <%= link_to "カートへ追加", cart_path(@product) %> %>
+
+<div><%= link_to "<<メインメニュー一覧へ", mainmenus_path %></div>

@@ -2,18 +2,6 @@
 <h1><%= @page_title %></h1>
 
 <%= form_for @product do |form| %>
-  <% Topping.all.each do |topping| %>
-  <table class="attr">
-    <tr>
-      <th><%= form.label :toppings, topping.name %></th>
-      <td><%= form.check_box :toppings %></td>
-    </tr>
-  </table>
-  <% end %>
-  <div><%= form.submit "トッピング追加" %></div>
-<% end %>
-
-<%= form_for @product do |form| %>
 
     <% Topping.all.each do |topping| %>
       <%= form.label :topping_ids, value: topping.id, class: 'checkbox' do %>
@@ -22,5 +10,7 @@
       <% end %>
     <% end %>
 
-  <%= form.submit '登録', class: 'btn btn-primary' %>
+  <%= form.submit 'トッピングの追加', class: 'btn btn-primary' %>
 <% end %>
+
+<div><%= link_to "<<メインメニュー詳細へ", product_path(@product) %></div>

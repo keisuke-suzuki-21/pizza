@@ -10,13 +10,16 @@ Rails.application.routes.draw do
     resources :products, only: [:new, :show, :edit]
   end
 
+  resources :orders do
+    resources :products, only: [:index, :edit]
+  end
+
   resources :sidemenus
   resources :toppings
-  resources :orders# , expect: [:index]
   resource :session, only: [:edit, :create, :destroy]
   resources :products
 
-  get "cart/:mainmenu" => "mainmenus#cart", as: "cart"
+  get "cart/:product" => "products#cart", as: "cart"
 
   namespace :admin do
     root "top#index"

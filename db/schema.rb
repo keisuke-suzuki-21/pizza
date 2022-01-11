@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2022_01_05_072238) do
   end
 
   create_table "order_sidemenus", force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.integer "sidemenu_id", null: false
+    t.integer "order_id"
+    t.integer "sidemenu_id"
     t.index ["order_id"], name: "index_order_sidemenus_on_order_id"
     t.index ["sidemenu_id"], name: "index_order_sidemenus_on_sidemenu_id"
   end
@@ -61,8 +61,10 @@ ActiveRecord::Schema.define(version: 2022_01_05_072238) do
 
   create_table "products", force: :cascade do |t|
     t.integer "mainmenu_id"
+    t.integer "order_id"
     t.integer "price"
     t.index ["mainmenu_id"], name: "index_products_on_mainmenu_id"
+    t.index ["order_id"], name: "index_products_on_order_id"
   end
 
   create_table "recipes", force: :cascade do |t|
