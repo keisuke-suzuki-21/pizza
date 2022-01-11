@@ -7,7 +7,18 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    if params[:order_id]
+      @order = Order.find(params[:order_id])
+      # @order = Order.where(member_id: current_member.id).where(cart: 0)
+      @product = Product.find(params[:id])
+      @product.save
+      @order.products << @product
+      Product.find(params[:id]).delete #消せてなさそう
+      # redirect_to order_products_path(@order)
+      redirect_to order_path(@order)
+    else
+      @product = Product.find(params[:id])
+    end
   end
 
   #メインメニューのみの追加
@@ -32,7 +43,7 @@ class ProductsController < ApplicationController
       @product = Product.find(params[:id])
       @product.save
       @order.products << @product
-      Product.find(params[:id]).delete
+      # Product.find(params[:id]).delete #消せてなさそう
       # redirect_to order_products_path(@order)
       redirect_to order_path(@order)
     else

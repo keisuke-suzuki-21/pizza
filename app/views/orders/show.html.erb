@@ -1,21 +1,13 @@
 <% @page_title = "カート内情報" %>
 <h1><%= @page_title %></h1>
 
-
-<% product1 = @order.products.first %>
-<%# <% if product1.present? %> %>
-<%= "eachの前" %>
-  <% @order.products.each do |products| %>
-    <% products.each do |product| %>
+<% if @order.products.present? %>
+  <% @order.products.each do |product| %>
     <h5><%= product.mainmenu.name %></h5>
   <% end %>
-  <% end %>
-<%= "eachの後" %>
-<%# <% else %> %>
-  <%= @order.member.name %>
-  <%= @order.products.first %>
+<% else %>
  <p>カートに情報がありません。</p>
-<%# <% end %> %>
+<% end %>
 
 <%# <% Product.find_by(id: mainmenu.id).delete %> %>
 <div><%= link_to "注文ボタン", edit_order_path(@order) %></div>

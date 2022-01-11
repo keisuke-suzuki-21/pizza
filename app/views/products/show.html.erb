@@ -43,10 +43,12 @@
 <% end %>
 
 
-<%# <%= link_to "カートへ追加", new_order_path %> %>
+
 
 <%= link_to "カートへ追加", edit_order_product_path(@order, @product) %>
+<%# <%= link_to "カートへ追加", order_product_path(@order, @product) %> %>
 
+<%# <%= link_to "カートへ追加", new_order_path %> %>
 <%# <%= link_to "カートへ追加", order_path(@order) %> %>
 <%# <%= link_to "カートへ追加", cart_path(@product) %> %>
 

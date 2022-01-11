@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :orders do
-    resources :products, only: [:index, :edit]
+    resources :products, only: [:index, :edit, :show]
   end
 
   resources :sidemenus
