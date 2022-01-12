@@ -29,4 +29,23 @@
   <p>メインメニュー情報がありません。</p>
 <% end %>
 
+<% if @sidemenus.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>サイドメニュー名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sidemenus.each do |sidemenu| %>
+        <tr>
+          <td><%= link_to sidemenu.name, sidemenu %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>サイドメニュー情報がありません。</p>
+<% end %>
+
 <div class="toolbar"><%= link_to "<<Top", :root %></div>

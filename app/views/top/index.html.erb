@@ -24,10 +24,20 @@
 <% end %>
 
 <ul>
-	<li><%= link_to "メインメニュー一覧", mainmenus_path %></li>
+	<li><%= link_to "商品一覧", mainmenus_path %></li>
   <li><%= link_to "サイドメニュー一覧", sidemenus_path %></li>
   <% unless current_member %>
-    <li><%= link_to "カート", "#" %></li>
+    <% if Order.find_by(member_id: 100, cart: false).present? %>
+      <% @order = Order.find_by(member_id: 100, cart: false) %>
+    <% else %>
+      <% @member = Member.new %>
+      <% @member.id = 100 %>
+      <% @order = Order.new %>
+      <% @order.member = @member %>
+      <% @order.id = @member.id %>
+      <% @order.save! %>
+    <% end %>
+    <li><%= link_to "カート", order_path(@order) %></li>
 	  <li><%= link_to "ログイン", edit_session_path %></li>
   <% end %>
   <% if current_member %>

@@ -27,8 +27,13 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @member = current_member
-    @order = Order.new
+    @order = Order.find(params[:id])
+  end
+
+  #確認画面用アクション
+  def confirm
+    @order = Order.find(params[:id])
+    render "edit"  if @order.invalid?
   end
 
   def create
@@ -37,8 +42,6 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.assign_attributes(params[:order])
-    # @member = current_member
-    # @member.assign_attributes(params[:member])
     if @order.save
       redirect_to @order
     else

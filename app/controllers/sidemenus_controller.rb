@@ -13,7 +13,15 @@ class SidemenusController < ApplicationController
   end
 
   def edit
-    # @sidemenu = Sidemenu.find(params[:id])
+    if params[:order_id]
+      @order = Order.find(params[:order_id])
+      @sidemenu = Sidemenu.find(params[:id])
+      @sidemenu.save
+      @order.sidemenus << @sidemenu
+      redirect_to order_path(@order)
+    else
+      @product = Product.find(params[:id])
+    end
   end
 
   def create

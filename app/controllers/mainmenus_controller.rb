@@ -1,6 +1,7 @@
 class MainmenusController < ApplicationController
   def index
     @mainmenus = Mainmenu.all
+    @sidemenus = Sidemenu.all
   end
 
   def show

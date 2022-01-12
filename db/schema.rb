@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 2022_01_05_072238) do
   end
 
   create_table "members", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "adress", null: false
-    t.string "phone", null: false
-    t.string "email", null: false
+    t.string "name"
+    t.string "adress"
+    t.string "phone"
+    t.string "email"
     t.integer "point"
-    t.string "fullname", null: false
+    t.string "fullname"
     t.string "password_digest"
   end
 
