@@ -1,9 +1,12 @@
-<% @page_title = "カート内情報" %>
+<% @page_title = @order.member.name + "さんのカート内情報" %>
 <h1><%= @page_title %></h1>
 
 <% if @order.products.present? %>
   <% @order.products.each do |product| %>
-    <h5><%= product.mainmenu.name %></h5>
+    <h3><%= product.mainmenu.name %></h3>
+    <% product.toppings.each do |topping| %>
+      <p><%= topping.name %></p>
+    <% end %>
   <% end %>
 <% else %>
  <p>カートに情報がありません。</p>
