@@ -1,12 +1,7 @@
 class Admin::OrdersController < Admin::Base
 
   def index
-    if current_member
-      @orders = Order.where(member_id: current_member.id)
-      @order = @orders.where(cart: 0)
-    else
-      @order = Order.new
-    end
+    @orders = Order.all.where(cart: 1, case: 0)#注文表でかつ発送前のorder
   end
 
   def show

@@ -1,23 +1,13 @@
-<% @page_title = "カート内情報" %>
+<% @page_title = "注文履歴(発送前)" %>
 <h1><%= @page_title %></h1>
 
-<% if @order.present? %>
-  <table class="list">
-    <thead>
-      <tr>
-        <th>メインメニュー</th>
-        <th>サイドメニュー</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= "メインメニュー" %></td>
-        <td><%= @order.sidemenus.pluck(:name) %></td>
-      </tr>
-    </tbody>
-  </table>
+<% if @orders.present? %>
+  <% @orders.each do |order| %>
+    <p><%= order.member.name + "さんの注文"%></p>
+    <p><%= order.address %></p>
+  <% end %>
 <% else %>
-  <p>カート内情報がありません。</p>
+  <p>注文履歴がありません。</p>
 <% end %>
 
-<div><%= link_to "注文ボタン", edit_order_path(@order) %></div>
+<div><%= link_to "<<戻る", admin_administrators_path %></div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_05_072238) do
+ActiveRecord::Schema.define(version: 2022_01_13_072630) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "password_digest", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2022_01_05_072238) do
 
   create_table "orders", force: :cascade do |t|
     t.string "address"
-    t.date "time"
+    t.time "time"
     t.integer "price"
     t.boolean "case", default: false, null: false
     t.boolean "cart", default: false, null: false
@@ -67,8 +67,17 @@ ActiveRecord::Schema.define(version: 2022_01_05_072238) do
     t.index ["order_id"], name: "index_products_on_order_id"
   end
 
+  create_table "recipe_toppings", force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.integer "topping_id", null: false
+    t.index ["recipe_id"], name: "index_recipe_toppings_on_recipe_id"
+    t.index ["topping_id"], name: "index_recipe_toppings_on_topping_id"
+  end
+
   create_table "recipes", force: :cascade do |t|
+    t.integer "mainmenu_id", null: false
     t.string "name", null: false
+    t.index ["mainmenu_id"], name: "index_recipes_on_mainmenu_id"
   end
 
   create_table "sidemenus", force: :cascade do |t|
