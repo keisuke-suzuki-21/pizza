@@ -34,7 +34,6 @@
       <% @member.id = 100 %>
       <% @order = Order.new %>
       <% @order.member = @member %>
-      <% @order.id = @member.id %>
       <% @order.save! %>
     <% end %>
     <li><%= link_to "カート", order_path(@order) %></li>
@@ -48,8 +47,7 @@
     <% else %>
       <% @order = Order.new %>
       <% @order.member = current_member %>
-      <% @order.id = current_member.id %>
-      <% @order.save! %>
+      <% @order.save %>
     <% end %>
     <li><%= link_to "カート", order_path(@order) %></li>
 	  <li><%= link_to "マイアカウントページ", edit_member_path(current_member) %></li>

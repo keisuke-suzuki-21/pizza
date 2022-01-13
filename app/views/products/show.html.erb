@@ -27,7 +27,6 @@
   <% end %>
 </table>
 
-
 <% if current_member %>
   <% "ログインしているかつ既にカート(cart:0)を保持している人" %>
   <% if Order.find_by(member_id: current_member.id, cart: false).present? %>
@@ -36,7 +35,6 @@
   <% else %>
     <% @order = Order.new %>
     <% @order.member = current_member %>
-    <% @order.id = current_member.id %>
     <% @order.save! %>
   <% end %>
 <% else %>
@@ -49,7 +47,6 @@
     <% @member.id = 100 %>
     <% @order = Order.new %>
     <% @order.member = @member %>
-    <% @order.id = @member.id %>
     <% @order.save! %>
   <% end %>
 <% end %>

@@ -1,21 +1,8 @@
 class OrdersController < ApplicationController
 
   def index
-    #ログイン済みの人のカート
-    if current_member
-      #ログイン済みでかつ既にカートを保持している時
-      if Order.where(member_id: current_member.id).where(cart: 0).present?
-        @order = Order.where(member_id: current_member.id).where(cart: 0)
-      #ログインはしているが初めてのカートへの追加の時
-      else
-        @order = Order.new
-        @order.member_id = current_member.id
-        @order.save
-      end
-    #未ログインの人のカート
-    else
-      @order = Order.new
-    end
+    @member = Member.find(params[:member_id])
+    @orders = Order.all.where(member_id: @member.id)
   end
 
   def show
@@ -33,7 +20,17 @@ class OrdersController < ApplicationController
   #確認画面用アクション
   def confirm
     @order = Order.find(params[:id])
-    render "edit"  if @order.invalid?
+    @order.assign_attributes(params[:order])
+    # @order.save
+    # render "edit"  if @order.invalid?
+  end
+
+  #確定アクション
+  def complete
+    @order = Order.find(params[:id])
+    @order.cart = 1 #ここでカートから注文表へと切り替える
+    @order.assign_attributes(params[:order])
+    @order.save
   end
 
   def create

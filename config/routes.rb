@@ -24,7 +24,8 @@ Rails.application.routes.draw do
   resources :products
 
   get "cart/:product" => "products#cart", as: "cart"
-  post "order/confirm/:order" => "orders#confirm", as: "confirm"
+  post "order/:id/confirm" => "orders#confirm", as: "confirm"
+  post "order/:id/complete" => "orders#complete", as: "complete"
 
   namespace :admin do
     root "top#index"

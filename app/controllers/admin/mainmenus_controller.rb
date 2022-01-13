@@ -22,4 +22,14 @@ class Admin::MainmenusController < Admin::Base
     @mainmenu.destroy
     redirect_to :admin_mainmenus, notice: "メインメニューを削除しました。"
   end
+
+  def update
+    @mainmenu = Mainmenu.find(params[:id])
+    @mainmenu.assign_attributes(params[:mainmenu])
+    if @mainmenu.save
+      redirect_to :mainmenus, notice: "メインメニュー情報を更新しました。"
+    else
+      render "edit"
+    end
+  end
 end

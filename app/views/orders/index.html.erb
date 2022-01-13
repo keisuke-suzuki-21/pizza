@@ -1,13 +1,13 @@
-<% @page_title = "カート内情報" %>
+<% @page_title = @member.name + "さんの利用履歴" %>
 <h1><%= @page_title %></h1>
 
-<% if @order.products.present? %>
-  <% @order.products.each do |product| %>
-    <h5><%= product.mainmenu.name %></h5>
+<% if @orders.present? %>
+  <% @orders.each do |order| %>
+    <h5><%= order.address %></h5>
   <% end %>
 <% else %>
- <p>カートに情報がありません。</p>
+ <p>利用履歴がありません。</p>
 <% end %>
 
 
-<div><%= link_to "注文ボタン", edit_order_path(@order) %></div>
+<div><%= link_to "戻る", edit_member_path(@member) %></div>
