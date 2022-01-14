@@ -15,10 +15,12 @@
     <% price = price + product.mainmenu.price %>
     <% price1 = price1 + product.mainmenu.price %>
     <% product.toppings.each do |topping| %>
-      <p><%= topping.name %></p>
+      <%= topping.name %><%= "    " %>
       <% price = price + topping.price %>
       <% price1 = price1 + topping.price %>
     <% end %>
+    <br>
+    <%= link_to "削除", product, method: :delete, data: {confirm: "本当に削除しますか？"} %>
     <% @product = Product.find(product.id) %>
     <% @product.price = price1 %>
     <% @product.save %>
@@ -29,7 +31,8 @@
 
 <% if @order.sidemenus.present? %>
   <% @order.sidemenus.each do |sidemenu| %>
-  <h4><%= sidemenu.name %></h4>
+  <h3><%= sidemenu.name %></h3>
+  <%= link_to "削除", sidemenu, method: :delete, data: {confirm: "本当に削除しますか？"} %>
   <% price = price + sidemenu.price %>
   <% end %>
 <% end %>

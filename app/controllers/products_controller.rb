@@ -77,20 +77,15 @@ class ProductsController < ApplicationController
     end
   end
 
-  def cart
-    @product = Product.find(params[:product])
-    if current_member && Order.where(member_id: current_member.id).where(cart: 0).present?
-      @order = Order.where(member_id: current_member.id).where(cart: 0)
-      @order.products << @product
-      Product.find(@product.id).delete
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    if current_member
+      @order = Order.find_by(member_id: current_member.id, cart: false)
     else
-      @order = Order.new
-      @order.products << @product
-      Product.find(@product.id).delete
-      @order.member_id = current_member.id
-      @order.id = current_member.id
-      @order.save!
+      @order = Order.find_by(member_id: 100, cart: false)
     end
     redirect_to order_path(@order)
   end
+
 end

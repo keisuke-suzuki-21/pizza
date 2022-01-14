@@ -48,6 +48,11 @@ class SidemenusController < ApplicationController
   def destroy
     @sidemenu = Sidemenu.find(params[:id])
     @sidemenu.destroy
-    redirect_to :sidemenus, notice: "サイドメニューを削除しました。"
+    if current_member
+      @order = Order.find_by(member_id: current_member.id, cart: false)
+    else
+      @order = Order.find_by(member_id: 100, cart: false)
+    end
+    redirect_to order_path(@order)
   end
 end
