@@ -1,10 +1,11 @@
-<% @page_title = "注文履歴(発送前)" %>
+<% @page_title = "オーダー一覧(発送前)" %>
 <h1><%= @page_title %></h1>
 
 <% if @orders.present? %>
   <% @orders.each do |order| %>
     <p><%= order.member.name + "さんの注文"%></p>
-    <p><%= order.address %></p>
+    <p><%= order.time %></p>
+    <p><%= link_to "注文詳細", [:edit, :admin, order] %></p>
   <% end %>
 <% else %>
   <p>注文履歴がありません。</p>

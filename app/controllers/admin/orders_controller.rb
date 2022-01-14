@@ -11,14 +11,7 @@ class Admin::OrdersController < Admin::Base
   end
 
   def edit
-    @member = current_member
-    @order = Order.new
-    # if current_member
-    #   @member = current_member
-    #   @order = Order.new
-    # else
-    #   @order = Order.new
-    # end
+    @order = Order.find(params[:id])
   end
 
   def create
@@ -27,10 +20,8 @@ class Admin::OrdersController < Admin::Base
   def update
     @order = Order.find(params[:id])
     @order.assign_attributes(params[:order])
-    # @member = current_member
-    # @member.assign_attributes(params[:member])
     if @order.save
-      redirect_to @order
+      redirect_to admin_orders_path
     else
       render "edit"
     end

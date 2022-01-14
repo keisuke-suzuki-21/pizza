@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 
   def index
     @member = Member.find(params[:member_id])
-    @orders = Order.all.where(member_id: @member.id)
+    @orders = Order.all.where(member_id: @member.id).where(case: 1)
   end
 
   def show
@@ -27,11 +27,13 @@ class OrdersController < ApplicationController
 
   #確定アクション
   def complete
+    price = 0 #最終金額
     @order = Order.find(params[:id])
     @order.cart = 1 #ここでカートから注文表へと切り替える
     @order.assign_attributes(params[:order])
     #在庫管理(mainmenu)
     @order.products.each do |product|
+      price = price + product.price
       mainmenu = product.mainmenu
       recipe = mainmenu.recipe
       recipe.toppings.each do |topping|
@@ -48,7 +50,8 @@ class OrdersController < ApplicationController
         @topping.save
       end
     end
-
+    #サイドメニューの在庫管理を行う予定
+    @order.price = price
     @order.save
   end
 

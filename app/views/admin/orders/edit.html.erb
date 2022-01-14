@@ -1,8 +1,14 @@
-<% @page_title = "注文情報の入力" %>
+<% @page_title = "注文詳細" %>
 <h1><%= @page_title %></h1>
 
-<%= form_for @order, url: order_path(@order), method: :patch do |form| %>
-  配達先住所：<%= form.text_field :address %><br />
-  配達希望時間：<%= form.time_select :time, use_month_numbers: true %><br />
-  <%= form.submit "確認ボタン" %>
+<h3><%= @order.member.name + "さんの注文内容"%></h3>
+
+住所：<%= @order.address %> <br>
+配達希望時間：<%= @order.time %> <br>
+合計金額：<%= @order.price %><br>
+
+<%= form_for [:admin, @order] do |form| %>
+  <%= form.check_box :case %>
+  <%= form.label :case, "配達完了" %>
+  <%= form.submit "登録" %>
 <% end %>

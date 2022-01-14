@@ -1,9 +1,11 @@
-<% @page_title = @member.name + "さんの利用履歴" %>
+<% @page_title = @member.name + "さんの利用履歴(発送済み)" %>
 <h1><%= @page_title %></h1>
 
 <% if @orders.present? %>
   <% @orders.each do |order| %>
-    <h5><%= order.address %></h5>
+    配達先住所：<%= order.address %><br>
+    配達希望時間：<%= order.time %><br>
+    合計金額：<%= order.price %><br>
   <% end %>
 <% else %>
  <p>利用履歴がありません。</p>
