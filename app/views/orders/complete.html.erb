@@ -2,4 +2,20 @@
 
 <h1><%= @page_title %></h1>
 
+<% @order.products.each do |product| %>
+  <% product.mainmenu.recipe.toppings.each do |topping| %>
+    <% @topping = Topping.find(topping.id) %>
+    <%= @topping.name %>
+    <%= @topping.stock %>
+  <% end %>
+<% end %>
+
+<% @order.products.each do |product| %>
+  <% product.toppings.each do |topping| %>
+    <% @topping = Topping.find(topping.id) %>
+    <%= @topping.name %>
+    <%= @topping.stock %>
+  <% end %>
+<% end %>
+
 <div><%= link_to "<<Topへ", :root %></div>

@@ -4,9 +4,16 @@
 <%= form_for @product do |form| %>
 
     <% Topping.all.each do |topping| %>
-      <%= form.label :topping_ids, value: topping.id, class: 'checkbox' do %>
-        <%= form.check_box :topping_ids, { multiple: true }, topping.id, nil %>
-        <%= topping.name %>
+      <% if topping.stock < 1 %>
+        <%= form.label :topping_ids, value: topping.id, class: 'checkbox' do %>
+          <%= form.check_box :topping_ids,disabled: true %>
+          <%= topping.name %>
+        <% end %>
+      <% else %>
+        <%= form.label :topping_ids, value: topping.id, class: 'checkbox' do %>
+          <%= form.check_box :topping_ids, { multiple: true }, topping.id, nil %>
+          <%= topping.name %>
+        <% end %>
       <% end %>
     <% end %>
 

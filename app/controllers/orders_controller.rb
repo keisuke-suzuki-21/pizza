@@ -30,6 +30,25 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.cart = 1 #ここでカートから注文表へと切り替える
     @order.assign_attributes(params[:order])
+    #在庫管理(mainmenu)
+    @order.products.each do |product|
+      mainmenu = product.mainmenu
+      recipe = mainmenu.recipe
+      recipe.toppings.each do |topping|
+        @topping = Topping.find(topping.id)
+        @topping.stock = @topping.stock - 1
+        @topping.save
+      end
+    end
+    #在庫管理(topping自体)
+    @order.products.each do |product|
+      product.toppings.each do |topping|
+        @topping = Topping.find(topping.id)
+        @topping.stock = @topping.stock - 1
+        @topping.save
+      end
+    end
+
     @order.save
   end
 

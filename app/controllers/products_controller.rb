@@ -37,15 +37,31 @@ class ProductsController < ApplicationController
   #トッピングありの追加
   #カートにproductを格納するアクション
   def edit
+    a = 0 #ダブルリダイレクションをなくす工夫
     if params[:order_id]
       @order = Order.find(params[:order_id])
-      # @order = Order.where(member_id: current_member.id).where(cart: 0)
       @product = Product.find(params[:id])
+      #在庫管理機能(mainmenu)
+      @product.mainmenu.recipe.toppings.each do |topping|
+        @topping = Topping.find(topping.id)
+        if @topping.stock < 1
+          a = 1
+        end
+      end
+      #在庫管理機能(topping)
+      @product.toppings.each do |topping|
+        @topping = Topping.find(topping.id)
+        if @topping.stock < 1
+          a = 1
+        end
+      end
       @product.save
       @order.products << @product
-      # Product.find(params[:id]).delete #消せてなさそう
-      # redirect_to order_products_path(@order)
-      redirect_to order_path(@order)
+      if a == 1
+        redirect_to product_path(@product), notice: "在庫切れです。"
+      else
+        redirect_to order_path(@order)
+      end
     else
       @product = Product.find(params[:id])
     end
