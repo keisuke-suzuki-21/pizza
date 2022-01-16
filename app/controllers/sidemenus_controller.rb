@@ -59,4 +59,10 @@ class SidemenusController < ApplicationController
     @order.sidemenus.destroy(@sidemenu)
     redirect_to order_path(@order)
   end
+
+  def search
+    @sidemenus = Sidemenu.search(params[:q])
+    render "index"
+  end
+
 end

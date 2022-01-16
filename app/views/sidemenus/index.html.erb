@@ -1,6 +1,12 @@
 <% @page_title = "サイドメニュー一覧" %>
 <h1><%= @page_title %></h1>
 
+<%= form_tag :search_sidemenus, method: :get, class: "seach" do %>
+  <%= text_field_tag "q", params[:q] %>
+  <%= submit_tag "金額幅指定" %>
+  <%= "指定金額から+100円の幅を表示します。"%>
+<% end %>
+
 <% if @sidemenus.present? %>
   <table class="list">
     <thead>
@@ -12,6 +18,9 @@
       <% @sidemenus.each do |sidemenu| %>
         <tr>
           <td><%= link_to sidemenu.name, sidemenu %></td>
+        </tr>
+        <tr>
+          <td><%= sidemenu.price %></td>
         </tr>
       <% end %>
     </tbody>

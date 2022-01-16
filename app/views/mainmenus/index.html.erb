@@ -1,6 +1,12 @@
 <% @page_title = "メインメニュー一覧" %>
 <h1><%= @page_title %></h1>
 
+<%= form_tag :search_mainmenus, method: :get, class: "seach" do %>
+  <%= text_field_tag "q", params[:q] %>
+  <%= submit_tag "金額幅指定" %>
+  <%= "指定金額から+200円の幅を表示します。"%>
+<% end %>
+
 <% if @mainmenus.present? %>
   <table class="list">
     <thead>
@@ -17,30 +23,14 @@
           <% @product.save %>
           <td><%= link_to mainmenu.name, product_path(@product) %></td>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>メインメニュー情報がありません。</p>
-<% end %>
-
-<% if @sidemenus.present? %>
-  <table class="list">
-    <thead>
-      <tr>
-        <th>サイドメニュー名</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @sidemenus.each do |sidemenu| %>
         <tr>
-          <td><%= link_to sidemenu.name, sidemenu %></td>
+          <td><%= mainmenu.price %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <p>サイドメニュー情報がありません。</p>
+  <p>メインメニュー情報がありません。</p>
 <% end %>
 
 <div class="toolbar"><%= link_to "<<Top", :root %></div>

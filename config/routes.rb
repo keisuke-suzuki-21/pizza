@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :mainmenus do
     resources :toppings, only: [:index]
     resources :products, only: [:new, :show, :edit]
+    get "search", on: :collection
   end
 
   resources :orders do
@@ -15,7 +16,9 @@ Rails.application.routes.draw do
     resources :sidemenus, only: [:edit]
   end
 
-  resources :sidemenus
+  resources :sidemenus do
+    get "search", on: :collection
+  end 
   resources :toppings
   resource :session, only: [:edit, :create, :destroy]
   resources :products
