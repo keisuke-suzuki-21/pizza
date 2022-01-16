@@ -9,20 +9,29 @@
 <% price = 0 %>
 <% if @order.products.present? %>
   <% @order.products.each do |product| %>
-    <% "プロダクトモデルの合計金額"%>
-    <% price1 = 0 %>
-    <h3><%= product.mainmenu.name %></h3>
-    <% price = price + product.mainmenu.price %>
-    <% price1 = price1 + product.mainmenu.price %>
+    商品名：<%= product.mainmenu.name %><br>
+    <% if product.size == 0 %>
+      <% price = price + product.mainmenu.price - 200 %>
+    <% elsif product.size == 2 %>
+     <% price = price + product.mainmenu.price + 200 %>
+    <% else %>
+      <% price = price + product.mainmenu.price %>
+    <% end %>
+    <% if product.size == 0 %>
+      金額：<%= product.mainmenu.price - 200 %><br>
+    <% elsif product.size == 2 %>
+     金額：<%= product.mainmenu.price + 200 %><br>
+    <% else %>
+      金額：<%= product.mainmenu.price %><br>
+    <% end %>
     <% product.toppings.each do |topping| %>
-      <%= topping.name %><%= "    " %>
+      <%= topping.name %><%= "    " %><%= topping.price %><br>
       <% price = price + topping.price %>
-      <% price1 = price1 + topping.price %>
     <% end %>
     <br>
-    <%= link_to "削除", product, method: :delete, data: {confirm: "本当に削除しますか？"} %>
+    <%= link_to "削除", product, method: :delete, data: {confirm: "本当に削除しますか？"} %><br>
     <% @product = Product.find(product.id) %>
-    <% @product.price = price1 %>
+    <% @product.price = price %>
     <% @product.save %>
   <% end %>
 <% else %>
@@ -31,8 +40,9 @@
 
 <% if @order.sidemenus.present? %>
   <% @order.sidemenus.each do |sidemenu| %>
-  <h3><%= sidemenu.name %></h3>
-  <%= link_to "削除", sidemenu, method: :delete, data: {confirm: "本当に削除しますか？"} %>
+  商品名：<%= sidemenu.name %><br>
+  金額：<%= sidemenu.price %><br>
+  <%= link_to "削除", sidemenu, method: :delete, data: {confirm: "本当に削除しますか？"} %><br>
   <% price = price + sidemenu.price %>
   <% end %>
 <% end %>
@@ -41,7 +51,6 @@
 <h4><%= price %></h4>
 
 
-<%# <% Product.find_by(id: mainmenu.id).delete %> %>
 <div><%= link_to "注文ボタン", edit_order_path(@order) %></div>
 
 <div><%= link_to "<<メインメニュー一覧へ", mainmenus_path %></div>

@@ -6,29 +6,6 @@
 
 <div class="toolbar"><%= link_to "トッピングの追加", edit_product_path(@product) %></div>
 
-<table class="attr">
-  <tr>
-    <th>メインメニュー名</th>
-    <td><%= @product.mainmenu.name %></td>
-  </tr>
-  <tr>
-    <th>値段</th>
-    <td><%= @product.price %></td>
-  </tr>
-  <tr>
-    <th>サイズ</th>
-    <td><%= @product.mainmenu.size %></td>
-  </tr>
-  <% if @product.toppings.present? %>
-  <tr>
-    <th>トッピング</th>
-    <% @product.toppings.each do |topping| %>
-    <td><%= topping.name %></td>
-    <% end %>
-  </tr>
-  <% end %>
-</table>
-
 <% if current_member %>
   <% "ログインしているかつ既にカート(cart:0)を保持している人" %>
   <% if Order.find_by(member_id: current_member.id, cart: false).present? %>
@@ -53,6 +30,38 @@
   <% end %>
 <% end %>
 
-<%= link_to "カートへ追加", edit_order_product_path(@order, @product) %>
+<table class="attr">
+  <tr>
+    <th>メインメニュー名</th>
+    <td><%= @product.mainmenu.name %></td>
+  </tr>
+  <tr>
+    <th>値段</th>
+    <td><%= @product.price %></td>
+  </tr>
+  <%# <%= form_for edit_order_product_path(@order, @product), method: :get do |form| %> %>
+  <%= form_for [:edit, @order, @product], method: :get do |form| %>
+  <tr>
+    <th>サイズ</th>
+    <td>
+      <%= form.radio_button :size, 0 %> S
+      <%= form.radio_button :size, 1 %> M
+      <%= form.radio_button :size, 2 %> L
+    </td>
+  </tr>
+  <% if @product.toppings.present? %>
+  <tr>
+    <th>トッピング</th>
+    <% @product.toppings.each do |topping| %>
+    <td><%= topping.name %></td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
 
-<div><%= link_to "<<メインメニュー一覧へ", mainmenus_path %></div>
+<div><%= form.submit "カートへ追加" %></div>
+<% end %>
+
+<%# <%= link_to "カートへ追加", edit_order_product_path(@order, @product) %> %>
+
+<div><%= link_to "<<商品一覧へ", mainmenus_path %></div>

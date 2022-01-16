@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2022_01_13_072630) do
   create_table "mainmenus", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
-    t.integer "size"
     t.boolean "recommend", null: false
   end
 
@@ -37,6 +36,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_072630) do
   create_table "order_sidemenus", force: :cascade do |t|
     t.integer "order_id"
     t.integer "sidemenu_id"
+    t.integer "number"
     t.index ["order_id"], name: "index_order_sidemenus_on_order_id"
     t.index ["sidemenu_id"], name: "index_order_sidemenus_on_sidemenu_id"
   end
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_072630) do
     t.integer "mainmenu_id"
     t.integer "order_id"
     t.integer "price"
+    t.integer "size", default: 1
     t.index ["mainmenu_id"], name: "index_products_on_mainmenu_id"
     t.index ["order_id"], name: "index_products_on_order_id"
   end
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_072630) do
     t.integer "price", null: false
     t.integer "size"
     t.boolean "recommend", null: false
+    t.integer "stock", null: false
   end
 
   create_table "toppings", force: :cascade do |t|

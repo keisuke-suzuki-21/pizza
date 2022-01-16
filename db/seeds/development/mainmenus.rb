@@ -9,7 +9,7 @@ prices = [800, 1000, 750, 850, 1100, 1050]
   Mainmenu.create(
     name: names[idx],
     price: prices[idx],
-    size: 1,
+    # size: 1,
     recommend: a
   )
 end

@@ -16,9 +16,13 @@ class SidemenusController < ApplicationController
     if params[:order_id]
       @order = Order.find(params[:order_id])
       @sidemenu = Sidemenu.find(params[:id])
-      @sidemenu.save
-      @order.sidemenus << @sidemenu
-      redirect_to order_path(@order)
+      if @sidemenu.stock < 1
+        redirect_to sidemenu_path(@sidemenu), notice: "在庫切れです。"
+      else
+        @sidemenu.save
+        @order.sidemenus << @sidemenu
+        redirect_to order_path(@order)
+      end
     else
       @product = Product.find(params[:id])
     end
@@ -46,13 +50,13 @@ class SidemenusController < ApplicationController
   end
 
   def destroy
-    @sidemenu = Sidemenu.find(params[:id])
-    @sidemenu.destroy
     if current_member
       @order = Order.find_by(member_id: current_member.id, cart: false)
     else
       @order = Order.find_by(member_id: 100, cart: false)
     end
+    @sidemenu = @order.sidemenus.find(params[:id])
+    @order.sidemenus.destroy(@sidemenu)
     redirect_to order_path(@order)
   end
 end

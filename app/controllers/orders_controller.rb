@@ -50,7 +50,13 @@ class OrdersController < ApplicationController
         @topping.save
       end
     end
-    #サイドメニューの在庫管理を行う予定
+    #サイドメニューの在庫管理
+    @order.sidemenus.each do |sidemenu|
+      price = price + sidemenu.price
+      @sidemenu = Sidemenu.find(sidemenu.id)
+      @sidemenu.stock = @sidemenu.stock - 1
+      @sidemenu.save
+    end
     @order.price = price
     @order.save
   end

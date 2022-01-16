@@ -6,16 +6,16 @@
 
 <% price = 0 %>
 <% @order.products.each do |product| %>
-  <p><%= product.mainmenu.name %></p>
+  商品名：<%= product.mainmenu.name %><%= "   " %><%= product.size %><br>
   <% price = price + product.mainmenu.price %>
   <% product.toppings.each do |topping| %>
-    <p><%= topping.name %></p>
+    <%= topping.name %><%= "   " %><br>
     <% price = price + topping.price %>
   <% end %>
 <% end %>
 
 <% @order.sidemenus.each do |sidemenu| %>
-  <p><%= sidemenu.name %></p>
+  商品名：<%= sidemenu.name %><br>
   <% price = price + sidemenu.price %>
 <% end %>
 

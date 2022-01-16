@@ -5,6 +5,7 @@ class CreateSidemenus < ActiveRecord::Migration[5.2]
       t.integer :price, null: false
       t.integer :size
       t.boolean :recommend, null:false
+      t.integer :stock, null: false
     end
   end
 end

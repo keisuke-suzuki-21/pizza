@@ -41,6 +41,7 @@ class ProductsController < ApplicationController
     if params[:order_id]
       @order = Order.find(params[:order_id])
       @product = Product.find(params[:id])
+      @product.assign_attributes(params[:product])
       #在庫管理機能(mainmenu)
       @product.mainmenu.recipe.toppings.each do |topping|
         @topping = Topping.find(topping.id)

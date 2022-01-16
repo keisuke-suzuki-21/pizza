@@ -5,6 +5,7 @@ prices = [200, 300, 150, 150, 150, 150]
     name: names[idx],
     price: prices[idx],
     size: 1,
-    recommend: 0
+    recommend: 0,
+    stock: 3
   )
 end
