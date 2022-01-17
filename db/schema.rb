@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_072630) do
 
   create_table "members", force: :cascade do |t|
     t.string "name"
-    t.string "adress"
+    t.string "address"
     t.string "phone"
     t.string "email"
     t.integer "point"

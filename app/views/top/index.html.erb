@@ -46,7 +46,9 @@
     <% "ログインしているが、カート自体をまだnewしていない人"%>
     <% else %>
       <% @order = Order.new %>
-      <% @order.member = current_member %>
+      <% @member = Member.find(current_member.id) %>
+      <% @order.member = @member %>
+      <% @order.address = @member.address %>
       <% @order.save %>
     <% end %>
     <li><%= link_to "カート", order_path(@order) %></li>

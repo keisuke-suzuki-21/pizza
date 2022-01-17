@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
   def confirm
     @order = Order.find(params[:id])
     @order.assign_attributes(params[:order])
-    if params[:point]
+    if current_member
       point = @order.point
       @member = Member.find(@order.member.id)
       if @member.point > point && point > 0
@@ -32,8 +32,10 @@ class OrdersController < ApplicationController
         render "edit"
       end
     end
-    @order.save
-    render "edit"  if @order.invalid?
+    if @order.save
+    else
+      render "edit"
+    end
   end
 
   #確定アクション
