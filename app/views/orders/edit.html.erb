@@ -1,8 +1,15 @@
 <% @page_title = "注文情報の入力" %>
 <h1><%= @page_title %></h1>
 
+<h3><%= flash[:notice]%></h3>
+
 <%= form_for @order, url: confirm_path(@order), method: :post  do |form| %>
   配達先住所：<%= form.text_field :address %><br />
   配達希望時間：<%= form.time_select :time, use_month_numbers: true %><br />
+  <% if current_member %>
+    <% @member = Member.find(@order.member_id) %>
+    利用可能ポイント：<%= @member.point %><br>
+    利用ポイント：<%= form.text_field :point %><br>
+  <% end %>
   <%= form.submit "確認ボタン" %>
 <% end %>

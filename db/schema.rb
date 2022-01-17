@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_072630) do
     t.boolean "case", default: false, null: false
     t.boolean "cart", default: false, null: false
     t.string "session"
+    t.integer "point"
     t.integer "member_id", null: false
     t.index ["member_id"], name: "index_orders_on_member_id"
   end

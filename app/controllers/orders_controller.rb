@@ -21,8 +21,19 @@ class OrdersController < ApplicationController
   def confirm
     @order = Order.find(params[:id])
     @order.assign_attributes(params[:order])
-    # @order.save
-    # render "edit"  if @order.invalid?
+    if params[:point]
+      point = @order.point
+      @member = Member.find(@order.member.id)
+      if @member.point > point && point > 0
+        @member.point = @member.point - point
+        @member.save
+      else
+        flash[:notice] = "利用ポイントが保持ポイントを上回っています。"
+        render "edit"
+      end
+    end
+    @order.save
+    render "edit"  if @order.invalid?
   end
 
   #確定アクション

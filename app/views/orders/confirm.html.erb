@@ -7,10 +7,9 @@
 <% price = 0 %>
 <% @order.products.each do |product| %>
   商品名：<%= product.mainmenu.name %><%= "   " %><%= product.size %><br>
-  <% price = price + product.mainmenu.price %>
+  <% price = product.price %>
   <% product.toppings.each do |topping| %>
     <%= topping.name %><%= "   " %><br>
-    <% price = price + topping.price %>
   <% end %>
 <% end %>
 
@@ -21,6 +20,12 @@
 
 <h4><%= "合計金額" %></h4>
 <h4><%= price %></h4>
+
+<h4><%= "利用ポイント" %></h4>
+<h4><%= @order.point %></h4>
+
+<h4><%= "支払い金額" %></h4>
+<h4><%= price - @order.point %></h4>
 
 <h4><%= "配達先住所" %></h4>
 <h4><%= @order.address %></h4>

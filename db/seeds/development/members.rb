@@ -13,7 +13,7 @@ gnames = ["太郎", "次郎", "花子"]
     adress: "神奈川県川崎市",
     phone: "080-#{b + c + d +a}-#{a + b + c +d}",
     email: "#{names[idx]}@example.com",
-    point: a*10,
+    point: 500,
     fullname: "#{fnames[idx % 4]} #{gnames[idx % 3]}"
   )
 end
