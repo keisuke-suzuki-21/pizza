@@ -4,7 +4,7 @@
 <%= form_tag :search_sidemenus, method: :get, class: "seach" do %>
   <%= text_field_tag "q", params[:q] %>
   <%= submit_tag "金額幅指定" %>
-  <%= "指定金額から+100円の幅を表示します。"%>
+  <%= "指定金額から+100円の幅を表示します。" %>
 <% end %>
 
 <% if @sidemenus.present? %>

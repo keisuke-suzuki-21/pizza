@@ -8,8 +8,8 @@ gnames = ["太郎", "次郎", "花子"]
   d = rand(9).to_s
   Member.create(
     name: names[idx],
-    password: "pizza!",
-    password_confirmation: "pizza!",
+    password: "pizzadaisuki",
+    password_confirmation: "pizzadaisuki",
     adress: "神奈川県川崎市",
     phone: "080-#{b + c + d +a}-#{a + b + c +d}",
     email: "#{names[idx]}@example.com",
