@@ -13,7 +13,7 @@ class Admin::MainmenusController < Admin::Base
     if @mainmenu.save
       redirect_to :admin_mainmenus, notice: "メインメニューを追加しました。"
     else
-      render "new"
+      render "index"
     end
   end
 

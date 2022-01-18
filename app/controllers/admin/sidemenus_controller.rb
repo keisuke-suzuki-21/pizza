@@ -13,7 +13,7 @@ class Admin::SidemenusController < Admin::Base
     if @sidemenu.save
       redirect_to :admin_sidemenus, notice: "サイドメニューを追加しました。"
     else
-      render "new"
+      render "index"
     end
   end
 

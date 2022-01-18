@@ -13,4 +13,8 @@ class Sidemenu < ApplicationRecord
       rel
     end
   end
+
+  validates :name, presence: true, uniqueness: true
+  validates :price, presence: true
+  validates :stock, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
 end

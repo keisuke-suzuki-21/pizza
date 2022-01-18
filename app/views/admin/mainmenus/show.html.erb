@@ -13,10 +13,6 @@
     <th>値段</th>
     <td><%= @mainmenu.price %></td>
   </tr>
-  <tr>
-    <th>サイズ</th>
-    <td><%= @mainmenu.size %></td>
-  </tr>
   <%= form_for [:admin, @mainmenu] do |form| %>
   <tr>
     <th>おすすめ</th>

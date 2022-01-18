@@ -2,6 +2,8 @@
 
 <h1><%= @page_title %></h1>
 
+<h3><%= flash[:notice]%></h3>
+
 <div class="toolbar"><%= link_to "削除", [:admin, @topping], method: :delete, data: {confirm: "本当に削除しますか？"} %></div>
 
 <table class="attr">

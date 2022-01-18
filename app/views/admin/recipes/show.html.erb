@@ -1,0 +1,20 @@
+<% @page_title = "レシピ詳細" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "削除", [:admin, @recipe], method: :delete, data: {confirm: "本当に削除しますか？"} %></div>
+
+<table class="attr">
+  <tr>
+    <th>レシピ名</th>
+    <td><%= @recipe.name %></td>
+  </tr>
+  <tr>
+    <th>材料</th>
+    <% @recipe.toppings.each do |topping| %>
+    <td><%= topping.name %></td>
+    <% end %>
+  </tr>
+</table>
+
+<div class="toolbar"><%= link_to "<<レシピ一覧に戻る", admin_recipes_path %></div>

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :sidemenus do
     get "search", on: :collection
-  end 
+  end
   resources :toppings
   resource :session, only: [:edit, :create, :destroy]
   resources :products
@@ -29,12 +29,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "top#index"
-    resources :sessions
+    resource :session
     resources :administrators
     resources :members
     resources :mainmenus
     resources :sidemenus
     resources :toppings
     resources :orders
+    resources :recipes
   end
 end

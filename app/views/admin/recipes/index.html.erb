@@ -1,0 +1,42 @@
+<% @page_title = "レシピ一覧" %>
+<h1><%= @page_title %></h1>
+
+<% if @recipes.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>レシピ名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipes.each do |recipe| %>
+        <tr>
+          <td><%= link_to recipe.name, [:admin, recipe] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>メインメニュー情報がありません。</p>
+<% end %>
+
+
+<% @page_title = "レシピの新規作成" %>
+
+<h1><%= @page_title %></h1>
+
+<%= form_for [:admin, @recipe] do |form| %>
+<table class="attr">
+  <tr>
+    <th><%= form.label :name, "レシピ名" %></th>
+    <td><%= form.text_field :name %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :mainmenu_id, "メインメニューid" %></th>
+    <td><%= form.text_field :mainmenu_id %></td>
+  </tr>
+</table>
+<div><%= form.submit "レシピ新規登録"%></div>
+<% end %>
+
+<div class="toolbar"><%= link_to "<<管理者topへ", :admin_administrators %></div>

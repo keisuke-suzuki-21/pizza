@@ -11,15 +11,20 @@ class Admin::ToppingsController < Admin::Base
   def create
     @topping = Topping.new(params[:topping])
     if @topping.save
-      redirect_to :admin_toppings, notice: "トッピングを追加しました。"
+      redirect_to :admin_toppings
     else
-      render "new"
+      render "index"
     end
   end
 
   def destroy
     @topping = Topping.find(params[:id])
-    @topping.destroy
-    redirect_to :admin_toppings, notice: "トッピングを削除しました。"
+    if @topping.recipes.present?
+      flash[:notice] = "このトッピングはレシピに含まれているため削除できません。"
+      render "show"
+    else
+      @topping.destroy
+      redirect_to :admin_toppings, notice: "トッピングを削除しました。"
+    end
   end
 end

@@ -1,6 +1,8 @@
 <% @page_title = "トッピング一覧" %>
 <h1><%= @page_title %></h1>
 
+<%= render "shared/errors", obj: @topping %>
+
 <% if @toppings.present? %>
   <table class="list">
     <thead>
