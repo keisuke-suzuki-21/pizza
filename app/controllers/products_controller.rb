@@ -89,4 +89,17 @@ class ProductsController < ApplicationController
     redirect_to order_path(@order)
   end
 
+  # 数量変更
+  def number
+    @product = Product.find(params[:id])
+    @product.assign_attributes(params[:product])
+    @product.save
+    if current_member
+      @order = Order.find_by(member_id: current_member.id, cart: false)
+    else
+      @order = Order.find_by(member_id: 100, cart: false)
+    end
+    redirect_to @order
+  end
+
 end

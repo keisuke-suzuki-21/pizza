@@ -10,23 +10,28 @@
 <% if @order.products.present? %>
   <% @order.products.each do |product| %>
     商品名：<%= product.mainmenu.name %><br>
-    <% if product.size == 0 %>
-      <% price = price + product.mainmenu.price - 200 %>
-    <% elsif product.size == 2 %>
-     <% price = price + product.mainmenu.price + 200 %>
-    <% else %>
-      <% price = price + product.mainmenu.price %>
+    <%= form_for product, url: number_path(product), method: :patch do |form| %>
+      <% options = [1, 2, 3, 4, 5, 6, 7, 8, 9]%>
+      数量：<%= form.select :number, options %>
+      <%= form.submit "数量変更" %>
     <% end %>
     <% if product.size == 0 %>
-      金額：<%= product.mainmenu.price - 200 %><br>
+      <% price = price + (product.mainmenu.price - 200) * product.number %>
     <% elsif product.size == 2 %>
-     金額：<%= product.mainmenu.price + 200 %><br>
+     <% price = price + (product.mainmenu.price + 200) * product.number %>
     <% else %>
-      金額：<%= product.mainmenu.price %><br>
+      <% price = price + (product.mainmenu.price) * product.number %>
+    <% end %>
+    <% if product.size == 0 %>
+      金額：<%= (product.mainmenu.price - 200) * product.number %><br>
+    <% elsif product.size == 2 %>
+     金額：<%= (product.mainmenu.price + 200) * product.number %><br>
+    <% else %>
+      金額：<%= (product.mainmenu.price) * product.number %><br>
     <% end %>
     <% product.toppings.each do |topping| %>
-      <%= topping.name %><%= "    " %><%= topping.price %><br>
-      <% price = price + topping.price %>
+      <%= topping.name %><%= "    " %><%= topping.price * product.number %><br>
+      <% price = price + (topping.price * product.number) %>
     <% end %>
     <br>
     <%= link_to "削除", product, method: :delete, data: {confirm: "本当に削除しますか？"} %><br>
@@ -41,9 +46,21 @@
 <% if @order.sidemenus.present? %>
   <% @order.sidemenus.each do |sidemenu| %>
   商品名：<%= sidemenu.name %><br>
-  金額：<%= sidemenu.price %><br>
+  <% @order.order_sidemenus.each do |order_sidemenu| %>
+    <% if sidemenu.id == order_sidemenu.sidemenu_id%>
+      <%= form_for order_sidemenu do |form| %>
+        <% options = [1, 2, 3, 4, 5, 6, 7, 8, 9]%>
+        数量：<%= form.select :number, options %>
+        <%= form.submit "数量変更" %>
+      <% end %>
+      <% @number = 1 %>
+      <% @number = order_sidemenu.number %>
+    <% end %>
+  <% end %>
+  金額：<%= sidemenu.price * @number %><br>
+  <% @sidemenu = Sidemenu.find(sidemenu.id) %>
   <%= link_to "削除", sidemenu, method: :delete, data: {confirm: "本当に削除しますか？"} %><br>
-  <% price = price + sidemenu.price %>
+  <% price = price + sidemenu.price * @number %>
   <% end %>
 <% end %>
 

@@ -6,7 +6,7 @@
 
 <% price = 0 %>
 <% @order.products.each do |product| %>
-  商品名：<%= product.mainmenu.name %><%= "   " %><%= product.size %><br>
+  商品名：<%= product.mainmenu.name %><%= "   " %><%= "×" + (product.number).to_s %><br>
   <% price = product.price %>
   <% product.toppings.each do |topping| %>
     <%= topping.name %><%= "   " %><br>
@@ -14,8 +14,13 @@
 <% end %>
 
 <% @order.sidemenus.each do |sidemenu| %>
+  <% @order.order_sidemenus.each do |order_sidemenu| %>
+    <% if sidemenu.id == order_sidemenu.sidemenu_id %>
+      <% @number = order_sidemenu.number %>
+    <% end %>
+  <% end %>
   商品名：<%= sidemenu.name %><br>
-  <% price = price + sidemenu.price %>
+  <% price = price + sidemenu.price * @number %>
 <% end %>
 
 <h4><%= "合計金額" %></h4>

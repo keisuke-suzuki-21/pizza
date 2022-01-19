@@ -22,10 +22,12 @@ Rails.application.routes.draw do
   resources :toppings
   resource :session, only: [:edit, :create, :destroy]
   resources :products
+  resources :order_sidemenus
 
   get "cart/:product" => "products#cart", as: "cart"
   post "order/:id/confirm" => "orders#confirm", as: "confirm"
   post "order/:id/complete" => "orders#complete", as: "complete"
+  patch "number/:id" => "products#number", as: "number"
 
   namespace :admin do
     root "top#index"

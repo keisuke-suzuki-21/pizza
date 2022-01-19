@@ -7,7 +7,7 @@ class Admin::SessionsController < Admin::Base
     administrator = Administrator.find_by(name: params[:name])
     if administrator&.authenticate(params[:password])
       #session[:member_id] = member.id
-      cookies.signed[:administrator_id] = { value: administrator.id, expires: 5.minutes.from_now }
+      cookies.signed[:administrator_id] = { value: administrator.id, expires: 60.minutes.from_now }
     else
       flash.alert = "名前とパスワードが一致しません"
     end

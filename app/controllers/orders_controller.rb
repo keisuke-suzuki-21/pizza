@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
       recipe = mainmenu.recipe
       recipe.toppings.each do |topping|
         @topping = Topping.find(topping.id)
-        @topping.stock = @topping.stock - 1
+        @topping.stock = @topping.stock - (1 * product.number)
         @topping.save
       end
     end
@@ -59,15 +59,20 @@ class OrdersController < ApplicationController
     @order.products.each do |product|
       product.toppings.each do |topping|
         @topping = Topping.find(topping.id)
-        @topping.stock = @topping.stock - 1
+        @topping.stock = @topping.stock - (1 * product.number)
         @topping.save
       end
     end
     #サイドメニューの在庫管理
     @order.sidemenus.each do |sidemenu|
-      price = price + sidemenu.price
+      @order.order_sidemenus.each do |order_sidemenu|
+        if sidemenu.id == order_sidemenu.sidemenu_id
+          @number = order_sidemenu.number
+        end
+      end
+      price = price + sidemenu.price * @number
       @sidemenu = Sidemenu.find(sidemenu.id)
-      @sidemenu.stock = @sidemenu.stock - 1
+      @sidemenu.stock = @sidemenu.stock - 1 * @number
       @sidemenu.save
     end
     @order.price = price
