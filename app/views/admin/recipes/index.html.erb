@@ -1,6 +1,8 @@
 <% @page_title = "レシピ一覧" %>
 <h1><%= @page_title %></h1>
 
+<%= render "shared/errors", obj: @recipe %>
+
 <% if @recipes.present? %>
   <table class="list">
     <thead>
@@ -35,6 +37,13 @@
     <th><%= form.label :mainmenu_id, "メインメニューid" %></th>
     <td><%= form.text_field :mainmenu_id %></td>
   </tr>
+  <p>材料</p>
+  <% Topping.all.each do |topping| %>
+    <%= form.label :topping_ids, value: topping.id, class: 'checkbox' do %>
+      <%= form.check_box :topping_ids, { multiple: true }, topping.id, nil %>
+      <%= topping.name %>
+    <% end %>
+  <% end %>
 </table>
 <div><%= form.submit "レシピ新規登録"%></div>
 <% end %>

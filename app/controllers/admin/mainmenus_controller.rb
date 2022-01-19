@@ -27,7 +27,7 @@ class Admin::MainmenusController < Admin::Base
     @mainmenu = Mainmenu.find(params[:id])
     @mainmenu.assign_attributes(params[:mainmenu])
     if @mainmenu.save
-      redirect_to :mainmenus, notice: "メインメニュー情報を更新しました。"
+      redirect_to :admin_mainmenus, notice: "メインメニュー情報を更新しました。"
     else
       render "edit"
     end
