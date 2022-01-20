@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
       point = @order.point
       @member = Member.find(@order.member.id)
       if point.present?
-        if @member.point > point
+        if @member.point >= point
           if point >= 0
             @member.point = @member.point - point
             @member.save

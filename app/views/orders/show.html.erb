@@ -10,11 +10,13 @@
 <% if @order.products.present? %>
   <% @order.products.each do |product| %>
     商品名：<%= product.mainmenu.name %><br>
+    
     <%= form_for product, url: number_path(product), method: :patch do |form| %>
       <% options = [1, 2, 3, 4, 5, 6, 7, 8, 9]%>
       数量：<%= form.select :number, options %>
       <%= form.submit "数量変更" %>
     <% end %>
+
     <% if product.size == 0 %>
       <% price = price + (product.mainmenu.price - 200) * product.number %>
     <% elsif product.size == 2 %>
@@ -34,6 +36,24 @@
       <% price = price + (topping.price * product.number) %>
     <% end %>
     <br>
+
+    <%= form_for product, url: number_path(product), method: :patch do |form| %>
+        <% Topping.all.each do |topping| %>
+          <% if topping.stock < 1 %>
+            <%= form.label :topping_ids, value: topping.id, class: 'checkbox' do %>
+              <%= form.check_box :topping_ids,disabled: true %>
+              <%= topping.name %>
+            <% end %>
+          <% else %>
+            <%= form.label :topping_ids, value: topping.id, class: 'checkbox' do %>
+              <%= form.check_box :topping_ids, { multiple: true }, topping.id, nil %>
+              <%= topping.name %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <%= form.submit 'トッピングの変更', class: 'btn btn-primary' %>
+    <% end %>
+
     <%= link_to "削除", product, method: :delete, data: {confirm: "本当に削除しますか？"} %><br>
     <% @product = Product.find(product.id) %>
     <% @product.price = price %>
