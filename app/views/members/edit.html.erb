@@ -1,4 +1,4 @@
-<% @page_title = "マイページ" %>
+<% @page_title = "マイアカウントページ" %>
 
 <h1><%= @page_title %></h1>
 
@@ -19,6 +19,10 @@
   <tr>
     <th><%= form.label :password, "パスワード" %></th>
     <td><%= form.text_field :password %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :password_confirmation, "パスワード" %></th>
+    <td><%= form.text_field :password_confirmation %></td>
   </tr>
   <tr>
     <th><%= form.label :address, "住所" %></th>

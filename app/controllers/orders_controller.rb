@@ -24,11 +24,21 @@ class OrdersController < ApplicationController
     if current_member
       point = @order.point
       @member = Member.find(@order.member.id)
-      if @member.point > point && point > 0
-        @member.point = @member.point - point
-        @member.save
+      if point.present?
+        if @member.point > point
+          if point >= 0
+            @member.point = @member.point - point
+            @member.save
+          else
+            flash[:notice] = "利用ポイントに負の数は使用できない。"
+            render "edit"
+          end
+        else
+          flash[:notice] = "利用ポイントが保持ポイントを上回っています。"
+          render "edit"
+        end
       else
-        flash[:notice] = "利用ポイントが保持ポイントを上回っています。"
+        flash[:notice] = "利用ポイントを入力してください（利用しない場合は０を入力してください）。"
         render "edit"
       end
     end

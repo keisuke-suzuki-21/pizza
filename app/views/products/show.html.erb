@@ -41,7 +41,6 @@
     <th>値段</th>
     <td><%= @product.price %></td>
   </tr>
-  <%# <%= form_for edit_order_product_path(@order, @product), method: :get do |form| %> %>
   <%= form_for [:edit, @order, @product], method: :get do |form| %>
   <tr>
     <th>サイズ</th>
@@ -63,7 +62,5 @@
 
 <div><%= form.submit "カートへ追加" %></div>
 <% end %>
-
-<%# <%= link_to "カートへ追加", edit_order_product_path(@order, @product) %> %>
 
 <div><%= link_to "<<メインメニュー一覧へ", mainmenus_path %></div>
