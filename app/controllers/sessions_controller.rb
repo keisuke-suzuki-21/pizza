@@ -8,10 +8,11 @@ class SessionsController < ApplicationController
     if member&.authenticate(params[:password])
       #session[:member_id] = member.id
       cookies.signed[:member_id] = { value: member.id, expires: 60.minutes.from_now }
+      redirect_to :root
     else
       flash.alert = "名前とパスワードが一致しません"
+      render "edit"
     end
-    redirect_to :root
   end
 
   def destroy
