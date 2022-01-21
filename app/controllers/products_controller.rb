@@ -102,10 +102,4 @@ class ProductsController < ApplicationController
     redirect_to @order
   end
 
-  # トッピング変更
-  def topping
-    @product = Product.find(params[:id])
-
-  end
-
 end

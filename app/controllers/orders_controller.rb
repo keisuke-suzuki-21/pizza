@@ -23,12 +23,12 @@ class OrdersController < ApplicationController
     @order.assign_attributes(params[:order])
     if current_member
       point = @order.point
-      @member = Member.find(@order.member.id)
+      @member = current_member
       if point.present?
         if @member.point >= point
           if point >= 0
-            @member.point = @member.point - point
-            @member.save
+            # @member.point = @member.point - point
+            # @member.save!
           else
             flash[:notice] = "利用ポイントに負の数は使用できない。"
             render "edit"
@@ -52,6 +52,12 @@ class OrdersController < ApplicationController
   def complete
     price = 0 #最終金額
     @order = Order.find(params[:id])
+    # ポイント減算
+    if current_member
+      @member = current_member
+      @member.point = @member.point - @order.point
+      @member.save
+    end
     @order.cart = 1 #ここでカートから注文表へと切り替える
     @order.assign_attributes(params[:order])
     #在庫管理(mainmenu)

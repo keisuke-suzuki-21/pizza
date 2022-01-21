@@ -38,14 +38,19 @@
 <h4><%= "配達希望時間" %></h4>
 <h4><%= @order.time %></h4>
 
+<h4><%= "会員の保持ポイント" %></h4>
+<h4><%= current_member.point %></h4>
+
 <%= form_for @order, method: :get, url: edit_order_path(@order) do |form| %>
 	<%= form.hidden_field :address %>
 	<%= form.hidden_field :time %>
+  <%= form.hidden_field :point %>
 	<%= form.submit '入力画面に戻る' %>
 <% end %>
 
 <%= form_for @order, method: :post, url: complete_path(@order) do |form| %>
 	<%= form.hidden_field :address %>
 	<%= form.hidden_field :time %>
+  <%= form.hidden_field :point %>
 	<%= form.submit '送信する' %>
 <% end %>
