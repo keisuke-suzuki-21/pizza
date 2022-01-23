@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :products
   resources :order_sidemenus
 
+  get 'search' => "mainmenus#search"
   get "cart/:product" => "products#cart", as: "cart"
   post "order/:id/confirm" => "orders#confirm", as: "confirm"
   post "order/:id/complete" => "orders#complete", as: "complete"

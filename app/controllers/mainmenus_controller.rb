@@ -23,7 +23,33 @@ class MainmenusController < ApplicationController
   end
 
   def search
-    @mainmenus = Mainmenu.search(params[:q])
+    price = params[:price]
+    search = params[:search]
+    if search == "メインメニュー"
+      @mainmenus = Mainmenu.all
+      if price.present?
+        from = price.to_i
+        to = price.to_i + 200
+        @mainmenus = @mainmenus.where(price: from..to)
+      end
+    elsif search == "サイドメニュー"
+      @sidemenus = Sidemenu.all
+      if price.present?
+        from = price.to_i
+        to = price.to_i + 200
+        @sidemenus = @sidemenus.where(price: from..to)
+      end
+    else
+      @mainmenus = Mainmenu.all
+      @sidemenus = Sidemenu.all
+      if price.present?
+        from = price.to_i
+        to = price.to_i + 200
+        @mainmenus = @mainmenus.where(price: from..to)
+        @sidemenus = @sidemenus.where(price: from..to)
+      end
+    end
     render "index"
   end
+
 end
