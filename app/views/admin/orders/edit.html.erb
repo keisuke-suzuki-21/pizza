@@ -1,9 +1,13 @@
 <% @page_title = "注文詳細" %>
 <h1><%= @page_title %></h1>
 
-<h3><%= @order.member.name + "さんの注文内容"%></h3>
+<% if @order.member.present? %>
+  <h3><%= @order.member.name + "さんの注文内容"%></h3>
+<% else %>
+  <h3><%= "未ログインの人の注文内容"%></h3>
+<% end %>
 
-住所：<%= @order.address %> <br>
+配達先住所：<%= @order.address %> <br>
 配達希望時間：<%= @order.time %> <br>
 合計金額：<%= @order.price %><br>
 

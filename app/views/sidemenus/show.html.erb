@@ -23,25 +23,11 @@
   <% "ログインしているかつ既にカート(cart:0)を保持している人" %>
   <% if Order.find_by(member_id: current_member.id, cart: false).present? %>
     <% @order = Order.find_by(member_id: current_member.id, cart: false) %>
-  <% "ログインしているけどカートを保持していない人" %>
-  <% else %>
-    <% @order = Order.new %>
-    <% @order.member = current_member %>
-    <% @order.id = current_member.id %>
-    <% @order.save! %>
   <% end %>
 <% else %>
   <% "ログインしていないが、既にカート(id = 100)を保持している人" %>
   <% if Order.find_by(member_id: 100, cart: false).present? %>
     <% @order = Order.find_by(member_id: 100, cart: false) %>
-  <% "ログインしていないし、カート(id = 100)も持っていない人" %>
-  <% else %>
-    <% @member = Member.new %>
-    <% @member.id = 100 %>
-    <% @order = Order.new %>
-    <% @order.member = @member %>
-    <% @order.id = @member.id %>
-    <% @order.save! %>
   <% end %>
 <% end %>
 

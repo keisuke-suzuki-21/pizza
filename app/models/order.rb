@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  belongs_to :member
+  belongs_to :member, optional: true
   has_many :order_sidemenus
   has_many :sidemenus, through: :order_sidemenus
   has_many :products

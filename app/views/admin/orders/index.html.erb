@@ -3,7 +3,11 @@
 
 <% if @orders.present? %>
   <% @orders.each do |order| %>
-    <p><%= order.member.name + "さんの注文"%></p>
+    <% if order.member.present? %>
+      <p><%= order.member.name + "さんの注文"%></p>
+    <% else %>
+      <p><%= "未ログインの人の注文"%></p>
+    <% end %>
     <p><%= order.time %></p>
     <p><%= link_to "注文詳細", [:edit, :admin, order] %></p>
   <% end %>

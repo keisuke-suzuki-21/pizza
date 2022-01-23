@@ -12,6 +12,9 @@
     <% @member = Member.find(@order.member_id) %>
     利用可能ポイント：<%= @member.point %><br>
     利用ポイント：<%= form.text_field :point %><br>
+  <% else %>
+    <p>ログインするとポイントを利用できるようになります。</p>
+    <%= form.hidden_field :point , value: 0 %>
   <% end %>
   <%= form.submit "確認ボタン" %>
 <% end %>
