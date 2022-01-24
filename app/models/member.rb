@@ -7,7 +7,7 @@ class Member < ApplicationRecord
   validates :address, presence: true
   validates :email, email: {allow_blank: true}, uniqueness: true
   validates :phone,presence: true, format: { with: /\A[0-9\-\(\)]*\z/, allow_blank: true }
-  validates :password, length: {minimum: 7, maximum:20, allow_blank: true },
+  validates :password, length: {minimum: 9, maximum:20, allow_blank: true },
     format: {
       with: /\A[A-Za-z][A-Za-z0-9]*\z/,
       allow_blank: true
