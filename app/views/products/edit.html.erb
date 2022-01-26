@@ -1,5 +1,15 @@
-<% @page_title = "トッピング追加画面" %>
-<h1><%= @page_title %></h1>
+<div class="title">
+  <h1><span>P</span>izza</h1>
+</div>
+
+<div class="savutitle">
+  <% @page_title = "トッピング追加画面" %>
+  <h3><%= @page_title %></h3>
+</div>
+
+
+<div class="main">
+
 
 <%= form_for @product do |form| %>
 
@@ -20,4 +30,7 @@
   <%= form.submit 'トッピングの追加', class: 'btn btn-primary' %>
 <% end %>
 
-<div><%= link_to "<<メインメニュー詳細へ", product_path(@product) %></div>
+
+<br><button class="button"><%= link_to "<<メインメニュー詳細へ", product_path(@product) %></button>
+
+</div>

@@ -1,15 +1,26 @@
-<% @page_title = @member.name + "さんの利用履歴(発送済み)" %>
-<h1><%= @page_title %></h1>
+<div class="title">
+  <h1><span>P</span>izza</h1>
+</div>
 
-<% if @orders.present? %>
-  <% @orders.each do |order| %>
-    配達先住所：<%= order.address %><br>
-    配達希望時間：<%= order.time %><br>
-    合計金額：<%= order.price %><br>
+<div class="savutitle">
+  <% @page_title = @member.name + "さんの利用履歴(発送済み注文)" %>
+  <h3><%= @page_title %></h3>
+</div>
+
+<div class="main">
+
+  <% if @orders.present? %>
+    <% @orders.each do |order| %>
+      配達先住所：<%= order.address %><br>
+      配達希望時間：<%= order.time %><br>
+      合計金額：<%= order.price %><br>
+    <% end %>
+  <% else %>
+   <p>利用履歴がありません。</p>
   <% end %>
-<% else %>
- <p>利用履歴がありません。</p>
-<% end %>
+
+  <button class="button"><%= link_to "<<マイアカウントページへ戻る", edit_member_path(@member) %></button>
 
 
-<div><%= link_to "戻る", edit_member_path(@member) %></div>
+
+</div>

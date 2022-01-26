@@ -1,49 +1,62 @@
-<% @page_title = "マイアカウントページ" %>
+<div class="title">
+  <h1><span>P</span>izza</h1>
+</div>
 
-<h1><%= @page_title %></h1>
+<div class="savutitle">
+  <% @page_title = "マイアカウントページ" %>
+  <h3><%= @page_title %></h3>
+</div>
 
-<%= render "shared/errors", obj: @member %>
 
-<div class="toolbar"><%= link_to "削除", @member, method: :delete, data: {confirm: "本当に削除しますか？"} %></div>
-<div class="toolbar"><%= link_to "ログアウト", :session, method: :delete, data: {confirm: "ログアウトしますか？"} %></div>
-<div class="toolbar"><%= link_to "利用履歴", member_orders_path(@member) %></div>
+<div class="main">
 
-<%= form_for @member do |form| %>
-<table class="attr">
-  <tr>
-    <th><%= form.label :name, "アカウント名" %></th>
-    <td><%= form.text_field :name %></td>
-  </tr>
-  <tr>
-    <th><%= form.label :fullname, "氏名" %></th>
-    <td><%= form.text_field :fullname %></td>
-  </tr>
-  <tr>
-    <th><%= form.label :password, "パスワード" %></th>
-    <td><%= form.text_field :password %></td>
-  </tr>
-  <tr>
-    <th><%= form.label :password_confirmation, "パスワード(確認用)" %></th>
-    <td><%= form.text_field :password_confirmation %></td>
-  </tr>
-  <tr>
-    <th><%= form.label :address, "住所" %></th>
-    <td><%= form.text_field :address %></td>
-  </tr>
-  <tr>
-    <th><%= form.label :email, "メールアドレス" %></th>
-    <td><%= form.text_field :email %></td>
-  </tr>
-  <tr>
-    <th><%= form.label :phone, "電話番号" %></th>
-    <td><%= form.text_field :phone %></td>
-  </tr>
-  <tr>
-    <th><%= form.label :point, "ポイント" %></th>
-    <td><%= @member.point %></td>
-  </tr>
-</table>
-<div><%= form.submit "更新" %></div>
-<% end %>
+  <button class="button"><%= link_to "<<Top", :root %></button><br><br>
 
-<div class="toolbar"><%= link_to "<<Top", :root %></div>
+
+  <%= render "shared/errors", obj: @member %>
+
+  <button class="button"><%= link_to "アカウント削除", @member, method: :delete, data: {confirm: "本当に削除しますか？"} %></button><br><br>
+  <button class="button"><%= link_to "ログアウト", :session, method: :delete, data: {confirm: "ログアウトしますか？"} %></button><br><br>
+  <button class="button"><%= link_to "利用履歴の確認", member_orders_path(@member) %></button><br><br>
+
+
+  <%= form_for @member do |form| %>
+  <table class="attr">
+    <tr>
+      <th><%= form.label :name, "アカウント名" %></th>
+      <td><%= form.text_field :name %></td>
+    </tr>
+    <tr>
+      <th><%= form.label :fullname, "氏名" %></th>
+      <td><%= form.text_field :fullname %></td>
+    </tr>
+    <tr>
+      <th><%= form.label :password, "パスワード" %></th>
+      <td><%= form.text_field :password %></td>
+    </tr>
+    <tr>
+      <th><%= form.label :password_confirmation, "パスワード(確認用)" %></th>
+      <td><%= form.text_field :password_confirmation %></td>
+    </tr>
+    <tr>
+      <th><%= form.label :address, "住所" %></th>
+      <td><%= form.text_field :address %></td>
+    </tr>
+    <tr>
+      <th><%= form.label :email, "メールアドレス" %></th>
+      <td><%= form.text_field :email %></td>
+    </tr>
+    <tr>
+      <th><%= form.label :phone, "電話番号" %></th>
+      <td><%= form.text_field :phone %></td>
+    </tr>
+    <tr>
+      <th><%= form.label :point, "ポイント" %></th>
+      <td><%= @member.point %></td>
+    </tr>
+  </table>
+  <div><%= form.submit "更新" %></div>
+  <% end %>
+
+
+</div>

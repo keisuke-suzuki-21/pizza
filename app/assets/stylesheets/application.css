@@ -1,8 +1,19 @@
+/* メニューバー */
+.manuba-{
+  width: 100%;
+  height: 70px;
+  padding-top: 5px;
+  box-sizing: border-box;
+}
 ul {
-	width: 200px;
+	width: auto;
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
+}
+li{
+  list-style: none;
+	float: left;
 	background-color: #eeeeee;
 }
 li a {
@@ -11,12 +22,6 @@ li a {
 	text-decoration: none;
 	color: #000000;
 }
-li {
-	text-align: center;
-}
-li:last-child {
-	border-bottom: none;
-}
 li a.active {
 	color: #ffffff;
 	background-color: #da3c41;
@@ -24,4 +29,24 @@ li a.active {
 li a:hover:not(.active) {
 	color: #ffffff;
 	background-color: #1b2538;
+}
+
+/*　共通　*/
+.title {
+  height: 65px;
+  margin: 0px 300px;
+  border-bottom: medium solid #6495ed;
+}
+.savutitle {
+  height: 50px;
+  margin: 20px 500px 50px 300px;
+  border-bottom: medium solid #333333;
+  opacity: 0.8;
+}
+.main {
+  height: 500px;
+  margin: 20px 300px;
+}
+.button{
+	font-size: 15px
 }

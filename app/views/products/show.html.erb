@@ -1,10 +1,19 @@
-<% @page_title = "メインメニュー詳細" %>
+<div class="title">
+  <h1><span>P</span>izza</h1>
+</div>
 
-<h1><%= @page_title %></h1>
+<div class="savutitle">
+  <% @page_title = "メインメニュー詳細" %>
+  <h3><%= @page_title %></h3>
+</div>
+
+
+<div class="main">
+
 
 <h3><%= flash[:notice]%></h3>
 
-<div class="toolbar"><%= link_to "トッピングの追加", edit_product_path(@product) %></div>
+<button class="button"><%= link_to "トッピングの追加", edit_product_path(@product) %></button><br>
 
 <% if current_member %>
   <% "ログインしているかつ既にカート(cart:0)を保持している人" %>
@@ -49,4 +58,7 @@
 <div><%= form.submit "カートへ追加" %></div>
 <% end %>
 
-<div><%= link_to "<<メインメニュー一覧へ", mainmenus_path %></div>
+<button class="button"><%= link_to "<<メインメニュー一覧へ", mainmenus_path %></button>
+
+
+</div>

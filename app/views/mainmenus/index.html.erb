@@ -1,5 +1,18 @@
-<% @page_title = "商品一覧" %>
-<h1><%= @page_title %></h1>
+<div class="title">
+  <h1><span>P</span>izza</h1>
+</div>
+
+<div class="savutitle">
+  <% @page_title = "商品一覧" %>
+  <h3><%= @page_title %></h3>
+</div>
+
+
+<div class="main">
+
+
+<button class = "button"><%= link_to "<<Top", :root %></button><br>
+
 
 <%= form_with url: search_path, method: :get, local: :true do |f| %>
   金額幅検索：<%= f.text_field :price %><%= "(指定金額から＋２００以内)" %>
@@ -55,4 +68,5 @@
   <p>サイドメニュー情報がありません。</p>
 <% end %>
 
-<div class="toolbar"><%= link_to "<<Top", :root %></div>
+
+</div>

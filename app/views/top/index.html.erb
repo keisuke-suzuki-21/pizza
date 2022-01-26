@@ -1,67 +1,81 @@
-<h2>Pizza</h2>
+<div class="title">
+  <h1><span>P</span>izza</h1>
+</div>
+
+<div class="main">
+
+
+<div class="menuba-">
+
+
+  <ul>
+  	<li><%= link_to "商品一覧", mainmenus_path %></li>
+    <% unless current_member %>
+      <% if Order.find_by(member_id: 100, cart: false).present? %>
+        <% @order = Order.find_by(member_id: 100, cart: false) %>
+      <% else %>
+        <% @member = Member.new %>
+        <% @member.id = 100 %>
+        <% @order = Order.new %>
+        <% @order.member = @member %>
+        <% @order.save! %>
+      <% end %>
+      <li><%= link_to "カート", order_path(@order) %></li>
+  	  <li><%= link_to "ログイン", edit_session_path %></li>
+      <li><%= link_to "新規会員登録", new_member_path %></li>
+    <% end %>
+    <% if current_member %>
+      <% "ログインしていて、既にカートへ何かしら入れてorderがnewされている人"%>
+      <% if Order.find_by(member_id: current_member.id, cart: false).present? %>
+        <% @order = Order.find_by(member_id: current_member.id, cart: false) %>
+      <% "ログインしているが、カート自体をまだnewしていない人"%>
+      <% else %>
+        <% @order = Order.new %>
+        <% @member = Member.find(current_member.id) %>
+        <% @order.member = @member %>
+        <% @order.address = @member.address %>
+        <% @order.save %>
+      <% end %>
+      <li><%= link_to "カート", order_path(@order) %></li>
+  	  <li><%= link_to "マイアカウントページ", edit_member_path(current_member) %></li>
+    <% else %>
+      <% "ログインしていないが、既にカート(id = 100)を保持している人" %>
+      <% if Order.find_by(member_id: 100, cart: false).present? %>
+        <% @order = Order.find_by(member_id: 100, cart: false) %>
+      <% "ログインしていないし、カート(id = 100)も持っていない人" %>
+      <% else %>
+        <% @member = Member.new %>
+        <% @member.id = 100 %>
+        <% @member.name = "未ログイン" %>
+        <% @member.save! %>
+        <% @order = Order.new %>
+        <% @order.member = @member %>
+        <% @order.member_id = @member.id %>
+        <% @order.save %>
+      <% end %>
+    <% end %>
+  </ul><br>
+
+
+</div>
+
 
 <% if current_member %>
-<h4>ログイン状態</h4>
+<br><h4>ログイン状態</h4>
 <% end %>
 
 <% if @mainmenus.present? %>
- <h4>超おすすめ！メインメニュー</h4>
+ <br><h4>超おすすめ！メインメニュー</h4>
  <% @mainmenus.each do |mainmenu| %><br>
   <%= mainmenu.name %>
  <% end %>
 <% end %>
 
 <% if @sidemenus.present? %>
- <h4>超おすすめ！サイドメニュー</h4>
+ <br><h4>超おすすめ！サイドメニュー</h4>
  <% @sidemenus.each do |sidemenu| %><br>
   <%= sidemenu.name %>
  <% end %>
 <% end %>
 
-<ul>
-	<li><%= link_to "商品一覧", mainmenus_path %></li>
-  <% unless current_member %>
-    <% if Order.find_by(member_id: 100, cart: false).present? %>
-      <% @order = Order.find_by(member_id: 100, cart: false) %>
-    <% else %>
-      <% @member = Member.new %>
-      <% @member.id = 100 %>
-      <% @order = Order.new %>
-      <% @order.member = @member %>
-      <% @order.save! %>
-    <% end %>
-    <li><%= link_to "カート", order_path(@order) %></li>
-	  <li><%= link_to "ログイン", edit_session_path %></li>
-    <li><%= link_to "新規会員登録", new_member_path %></li>
-  <% end %>
-  <% if current_member %>
-    <% "ログインしていて、既にカートへ何かしら入れてorderがnewされている人"%>
-    <% if Order.find_by(member_id: current_member.id, cart: false).present? %>
-      <% @order = Order.find_by(member_id: current_member.id, cart: false) %>
-    <% "ログインしているが、カート自体をまだnewしていない人"%>
-    <% else %>
-      <% @order = Order.new %>
-      <% @member = Member.find(current_member.id) %>
-      <% @order.member = @member %>
-      <% @order.address = @member.address %>
-      <% @order.save %>
-    <% end %>
-    <li><%= link_to "カート", order_path(@order) %></li>
-	  <li><%= link_to "マイアカウントページ", edit_member_path(current_member) %></li>
-  <% else %>
-    <% "ログインしていないが、既にカート(id = 100)を保持している人" %>
-    <% if Order.find_by(member_id: 100, cart: false).present? %>
-      <% @order = Order.find_by(member_id: 100, cart: false) %>
-    <% "ログインしていないし、カート(id = 100)も持っていない人" %>
-    <% else %>
-      <% @member = Member.new %>
-      <% @member.id = 100 %>
-      <% @member.name = "未ログイン" %>
-      <% @member.save! %>
-      <% @order = Order.new %>
-      <% @order.member = @member %>
-      <% @order.member_id = @member.id %>
-      <% @order.save %>
-    <% end %>
-  <% end %>
-</ul>
+</div>

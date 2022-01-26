@@ -1,16 +1,28 @@
-<% if current_member %>
-  <% @page_title = @order.member.name + "さんのカート内情報" %>
-<% else %>
-  <% @page_title = "カート内情報" %>
-<% end %>
+<div class="title">
+  <h1><span>P</span>izza</h1>
+</div>
 
-<h1><%= @page_title %></h1>
+<div class="savutitle">
+  <% if current_member %>
+    <% @page_title = @order.member.name + "さんのカート内情報" %>
+  <% else %>
+    <% @page_title = "カート内情報" %>
+  <% end %>
+  <h3><%= @page_title %></h3>
+</div>
+
+
+<div class="main">
+
+<button class = "button"><%= link_to "<<Top", :root %></button><br><br>
+
+
 <% "オーダーモデルの合計金額" %>
 <% price = 0 %>
 <% if @order.products.present? %>
   <% @order.products.each do |product| %>
     商品名：<%= product.mainmenu.name %><br>
-    
+
     <%= form_for product, url: number_path(product), method: :patch do |form| %>
       <% options = [1, 2, 3, 4, 5, 6, 7, 8, 9]%>
       数量：<%= form.select :number, options %>
@@ -88,7 +100,9 @@
 <h4><%= price %></h4>
 
 
-<div><%= link_to "注文ボタン", edit_order_path(@order) %></div>
 
-<div><%= link_to "<<メインメニュー一覧へ", mainmenus_path %></div>
-<div><%= link_to "<<サイドメニュー一覧へ", sidemenus_path %></div>
+<button calss="button"><%= link_to "注文ボタン", edit_order_path(@order) %></button><br>
+<br><button class="button"><%= link_to "<<メインメニュー一覧へ", mainmenus_path %></button>
+
+
+</div>

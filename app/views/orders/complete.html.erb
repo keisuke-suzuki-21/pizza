@@ -1,5 +1,18 @@
-<% @page_title = "注文が完了いたしました。" %>
+<div class="title">
+  <h1><span>P</span>izza</h1>
+</div>
 
-<h1><%= @page_title %></h1>
+<div class="savutitle">
+  <% @page_title = "確定画面" %>
+  <h3><%= @page_title %></h3>
+</div>
 
-<div><%= link_to "<<Topへ", :root %></div>
+
+<div class="main">
+
+  <h1><%= "注文が完了いたしました。" %></h1>
+  <h1><%= "またのご利用お待ちしております。" %></h1>
+
+  <button class="button"><%= link_to "<<Topへ", :root %></button>
+
+</div>
