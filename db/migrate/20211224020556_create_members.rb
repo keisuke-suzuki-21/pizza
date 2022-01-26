@@ -5,7 +5,7 @@ class CreateMembers < ActiveRecord::Migration[5.2]
       t.string :address #, null: false
       t.string :phone #, null: false
       t.string :email #, null: false
-      t.integer :point
+      t.integer :point,  default: 1000
       t.string :fullname #, null:false
     end
   end

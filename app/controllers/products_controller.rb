@@ -56,11 +56,13 @@ class ProductsController < ApplicationController
           a = 1
         end
       end
-      @product.save
-      @order.products << @product
+      # @product.save
+      # @order.products << @product
       if a == 1
         redirect_to product_path(@product), notice: "在庫切れです。"
       else
+        @product.save
+        @order.products << @product
         redirect_to order_path(@order)
       end
     else
@@ -70,7 +72,14 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    @product.assign_attributes(params[:product])
+    if params[:product]
+      @product.assign_attributes(params[:product])
+    # トッピングが何もされなかった時の処理
+    else
+      Topping.all.each do |topping|
+        @product.toppings.destroy(topping)
+      end
+    end
     if @product.save
       redirect_to @product
     else
@@ -92,7 +101,14 @@ class ProductsController < ApplicationController
   # 数量変更
   def number
     @product = Product.find(params[:id])
-    @product.assign_attributes(params[:product])
+    if params[:product]
+      @product.assign_attributes(params[:product])
+    # トッピングが何もされなかった時の処理
+    else
+      Topping.all.each do |topping|
+        @product.toppings.destroy(topping)
+      end
+    end
     @product.save
     if current_member
       @order = Order.find_by(member_id: current_member.id, cart: false)

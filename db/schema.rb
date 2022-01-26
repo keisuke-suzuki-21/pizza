@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_072630) do
     t.string "address"
     t.string "phone"
     t.string "email"
-    t.integer "point"
+    t.integer "point", default: 1000
     t.string "fullname"
     t.string "password_digest"
   end

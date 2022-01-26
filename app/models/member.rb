@@ -9,7 +9,7 @@ class Member < ApplicationRecord
   validates :phone,presence: true, format: { with: /\A[0-9\-\(\)]*\z/, allow_blank: true }
   validates :password, length: {minimum: 9, maximum:20, allow_blank: true },
     format: {
-      with: /\A[A-Za-z][A-Za-z0-9]*\z/,
+      with: /\A[A-Za-z0-9]*\z/,
       allow_blank: true
     }
 end
