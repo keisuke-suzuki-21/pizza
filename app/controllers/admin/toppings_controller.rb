@@ -27,4 +27,15 @@ class Admin::ToppingsController < Admin::Base
       redirect_to :admin_toppings, notice: "トッピングを削除しました。"
     end
   end
+
+  def update
+    @topping = Topping.find(params[:id])
+    @topping.assign_attributes(params[:topping])
+    if @topping.save
+      redirect_to [:admin, @topping], notice: "トッピング情報を更新しました。"
+    else
+      render "edit"
+    end
+  end
+
 end

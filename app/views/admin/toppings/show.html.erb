@@ -16,9 +16,17 @@
     <td><%= @topping.price %></td>
   </tr>
   <tr>
-    <th>ストック</th>
+    <th>現在のストック</th>
     <td><%= @topping.stock %></td>
   </tr>
+  <%= form_for [:admin, @topping] do |form| %>
+  <tr>
+    <th><%= form.label :stock, "ストック更新" %></th>
+    <% options = [1, 2, 3, 4, 5, 6, 7, 8, 9]%>
+    <td><%= form.select :stock, options %></td>
+  </tr>
+  <%= form.submit "数量変更" %>
+  <% end %>
 </table>
 
 <div class="toolbar"><%= link_to "<<トッピング一覧に戻る", admin_toppings_path %></div>
