@@ -1,21 +1,17 @@
 Rails.application.routes.draw do
   root "top#index"
-
   resources :members do
     resources :orders, only: [:index]
   end
-
   resources :mainmenus do
     resources :toppings, only: [:index]
     resources :products, only: [:new, :show, :edit]
     get "search", on: :collection
   end
-
   resources :orders do
     resources :products, only: [:index, :edit, :show]
     resources :sidemenus, only: [:edit]
   end
-
   resources :sidemenus do
     get "search", on: :collection
   end
